@@ -1,1039 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>The WebSwan - Lead Gen App</title>
-  
-  <!-- PWA Manifest Link -->
-  <link rel="manifest" href="manifest.json">
-  
-  <!-- Theme Color for Mobile Browsers -->
-  <meta name="theme-color" content="#63c5da">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSwan Services - Digital Marketing Solutions</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/menu72.png">
+    <link rel="apple-touch-icon" sizes="92x92" href="icons/menu92.png">
+    <link rel="apple-touch-icon" sizes="196x196" href="icons/menu196.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/menu512.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="icons/menu72.png">
+    <link rel="icon" type="image/png" sizes="92x92" href="icons/menu92.png">
+    <link rel="icon" type="image/png" sizes="196x196" href="icons/menu196.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/menu512.png">
+    <meta name="theme-color" content="#14395d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WebSwan">
+    <meta name="description" content="WebSwan Services - Digital Marketing, Web Design, and Advertising Solutions">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, query, where, orderBy, writeBatch, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+        const firebaseConfig = { apiKey: "AIzaSyB4FnZBeiDiyLQ0xXRtyoY0srkW5v9kVAI", authDomain: "webswan-referral-base.firebaseapp.com", projectId: "webswan-referral-base", storageBucket: "webswan-referral-base.firebasestorage.app", messagingSenderId: "658538847236", appId: "1:658538847236:web:2c94be51a1dd3d71e6a951", measurementId: "G-QQEDL3WWHD" };
+        try { const app = initializeApp(firebaseConfig); getAnalytics(app); window._db = getFirestore(app); window._fbCollection = collection; window._fbAddDoc = addDoc; window._fbGetDocs = getDocs; window._fbGetDoc = getDoc; window._fbDoc = doc; window._fbUpdateDoc = updateDoc; window._fbDeleteDoc = deleteDoc; window._fbQuery = query; window._fbWhere = where; window._fbOrderBy = orderBy; window._fbWriteBatch = writeBatch; window._fbServerTimestamp = serverTimestamp; window.firebaseAvailable = true; } catch (error) { console.error('Firebase error:', error); window.firebaseAvailable = false; }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; scroll-behavior: smooth; }
+        .webs-container { background: linear-gradient(135deg, #14395d, #38b9c9, #14395d); min-height: 100vh; width: 100%; font-family: 'Segoe UI', sans-serif; position: relative; }
+        .webs-container::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, #38b9c9 0%, #14395d 50%, #14395d 100%); opacity: 0.4; animation: spotlightMove 15s ease-in-out infinite; pointer-events: none; }
+        @keyframes spotlightMove { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(5%,5%) scale(1.1); } 66% { transform: translate(-5%,-5%) scale(0.9); } }
+        .webs-container .form-container { max-width: 1200px; width: 100%; background: white; margin: 0 auto; box-shadow: 0 15px 30px rgba(20,57,93,0.3); position: relative; z-index: 10; }
+        .form-wrapper { display: flex; transition: transform 0.5s ease; }
+        .form-panel { width: 100%; padding: 20px; flex-shrink: 0; }
+        .header-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.2); gap: 10px; flex-wrap: wrap; }
+        .language-switcher { position: relative; z-index: 100; flex: 1; min-width: 180px; }
+        .lang-select { padding: 8px 15px; border-radius: 25px; border: 2px solid #38b9c9; background: white; color: #14395d; font-weight: 600; cursor: pointer; width: 100%; }
+        .header-install-btn { background: linear-gradient(45deg, #14395d, #38b9c9); color: white; border: 2px solid white; padding: 8px 18px; border-radius: 40px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .header { background: linear-gradient(90deg, #14395d, #38b9c9, #14395d); color: white; padding: 20px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .header h1 { font-size: 1.8rem; margin-right: 10px; }
+        .emoji-container { position: relative; width: 140px; height: 60px; margin-left: 10px; }
+        .emoji { position: absolute; font-size: 2.5rem; opacity: 0; transform: scale(0.3); animation: emojiSequence 16s infinite; left: 50%; top: 50%; margin-left: -25px; margin-top: -25px; }
+        .emoji:nth-child(1) { animation: emojiSequence 16s infinite; }
+        .emoji:nth-child(2) { animation: emojiSequence 16s infinite; animation-delay: 2s; }
+        .emoji:nth-child(3) { animation: emojiSequence 16s infinite; animation-delay: 4s; }
+        .emoji:nth-child(4) { animation: emojiSequence 16s infinite; animation-delay: 6s; }
+        .emoji:nth-child(5) { animation: emojiSequence 16s infinite; animation-delay: 8s; }
+        .emoji:nth-child(6) { animation: emojiSequence 16s infinite; animation-delay: 10s; }
+        .emoji:nth-child(7) { animation: emojiSequence 16s infinite; animation-delay: 12s; }
+        .emoji:nth-child(8) { animation: emojiSequence 16s infinite; animation-delay: 14s; }
+        @keyframes emojiSequence { 0%,12.5% { opacity:0; transform: scale(0.3) translateX(-100px) translateY(-100px); } 3.125%,9.375% { opacity:1; transform: scale(1.2) translateX(0) translateY(0); } 12.5% { opacity:0; transform: scale(0.3) translateX(100px) translateY(100px); } 100% { opacity:0; transform: scale(0.3) translateX(100px) translateY(100px); } }
+        .panel-title { color: #14395d; font-size: 1.5rem; margin-bottom: 20px; border-bottom: 3px solid; border-image: linear-gradient(90deg, #14395d, #38b9c9, #14395d) 1; }
+        .waiver-notice { background: #d4edda; color: #155724; padding: 10px 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #28a745; }
+        .form-group { margin-bottom: 18px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: #14395d; }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 14px; border-radius: 10px; border: 3px solid #ddd; font-size: 15px; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: #38b9c9; }
+        .call-btn, .sms-btn, .portfolio-btn { background: linear-gradient(45deg, #14395d, #38b9c9); color: white; border: none; padding: 16px 30px; font-size: 1.1rem; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin: 15px 0; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+        .portfolio-btn { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+        .video-container { margin: 20px 0; border-radius: 12px; overflow: hidden; position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-title { color: #14395d; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .mobile-nav { display: flex; gap: 10px; padding: 15px; background: white; }
+        .mobile-nav-btn { flex: 1; background: linear-gradient(45deg, #14395d, #38b9c9); color: white; padding: 12px; border-radius: 25px; border: none; font-weight: bold; cursor: pointer; }
+        .footer-copy-section { background: white; border-radius: 16px; padding: 20px; margin: 25px 0; border: 2px solid #38b9c9; }
+        .footer-copy-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; margin-bottom: 12px; background: linear-gradient(145deg, #f8faff, #ffffff); border-radius: 12px; border-left: 6px solid #38b9c9; }
+        .footer-copy-btn { background: linear-gradient(45deg, #38b9c9, #14395d); color: white; border: none; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .pricing-links-container { display: flex; gap: 10px; margin: 15px 0 20px 0; flex-wrap: wrap; }
+        .view-pricing-link { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #14395d, #38b9c9); color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem; gap: 8px; }
+        .view-pricing-link.market-price { background: linear-gradient(45deg, #9c27b0, #6a1b9a); }
+        .view-pricing-link.pwa-price { background: linear-gradient(45deg, #ff9800, #f57c00); }
+        .view-pricing-link.ecommerce-price { background: linear-gradient(45deg, #e91e63, #c2185b); }
+        .state-compliance-section { background: linear-gradient(145deg, #f0f7ff, #e3f2fd); border-radius: 16px; padding: 20px; margin: 25px 0; border: 2px solid #2196f3; }
+        .state-search-container { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .state-input { flex: 2; padding: 15px; border: 2px solid #2196f3; border-radius: 12px; }
+        .state-search-btn { background: linear-gradient(45deg, #2196f3, #1976d2); color: white; border: none; padding: 15px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        .state-result { background: white; border-radius: 12px; padding: 20px; margin-top: 15px; border: 2px solid #4caf50; display: none; }
+        .state-result.show { display: block; }
+        .copyright-footer { background: linear-gradient(90deg, #14395d, #38b9c9, #14395d); color: white; text-align: center; padding: 20px; margin-top: 30px; }
+        .consent-notice { background: linear-gradient(145deg, #e8f4f8, #d1e9f0); border-radius: 12px; padding: 15px; margin: 20px 0 10px; border-left: 6px solid #14395d; }
+        .other-service-container { margin-top: 15px; padding: 20px; background: rgba(56,185,201,0.05); border-radius: 10px; display: none; }
+        .question-form-group { margin-bottom: 25px; }
+        .question-form-group select { width: 100%; padding: 15px; border: 3px solid rgba(56,185,201,0.3); border-radius: 10px; font-size: 1rem; }
+        @media (min-width: 901px) { .mobile-nav { display: none; } .form-wrapper { transform: none !important; } .form-panel { width: 50%; } }
+        @media (max-width: 900px) { .form-wrapper { width: 200%; } .form-panel { width: 50%; } }
+        .estimate-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(20,57,93,0.9); display: none; align-items: center; justify-content: center; z-index: 200000; padding: 20px; overflow-y: auto; }
+        .estimate-modal-content { background: white; border-radius: 20px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+        .estimate-modal-header { background: linear-gradient(135deg, #14395d, #38b9c9); color: white; padding: 20px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+        .close-modal { background: #4fedf0; border: none; color: #14395d; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 2rem; display: flex; align-items: center; justify-content: center; }
+        .estimate-modal-body { padding: 30px; overflow-y: auto; }
+        .admin-login-btn { position: fixed; bottom: 100px; right: 20px; z-index: 2000000; background: #333; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.6; border: none; }
+        .admin-login-btn:hover { opacity: 1; }
+        .admin-panel { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #58a3ed, #07b584); z-index: 1000000; padding: 20px; overflow-y: auto; }
+        .admin-panel.show { display: block; }
+        .admin-container { max-width: 1200px; margin: 40px auto; background: rgba(255,255,255,0.98); border-radius: 28px; padding: 30px; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 3px solid #07b584; padding-bottom: 20px; }
+        .admin-close-btn { background: #dc3545; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .admin-tab { padding: 12px 25px; background: #f0f0f0; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .admin-tab.active { background: linear-gradient(45deg, #58a3ed, #07b584); color: white; }
+        .admin-special-section { background: white; border-radius: 20px; padding: 20px; border: 2px solid gold; margin-top: 20px; }
+        .admin-special-input-group { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+        .admin-special-input-group input { padding: 12px; border: 2px solid gold; border-radius: 40px; width: 180px; }
+        .admin-special-input-group button { background: linear-gradient(45deg, gold, #ffd700); border: none; padding: 10px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; }
+        .admin-special-timer { background: #f0f0f0; border-radius: 16px; padding: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .admin-timer-display { font-size: 1.8rem; font-weight: 700; font-family: monospace; color: #b8860b; }
+        .change-password-box { background: white; border-radius: 20px; padding: 25px; }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-    }
+        /* ESTIMATE CALCULATOR STYLES */
+        .estimate-calculator .pricing-card { background: linear-gradient(145deg, #f8faff, rgba(56,185,201,0.1)); border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .estimate-calculator .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .estimate-calculator .pricing-item { background: white; padding: 10px; border-radius: 8px; border-left: 3px solid #14395d; font-size: 0.9rem; }
+        .estimate-calculator .section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(20,57,93,0.1); }
+        .estimate-calculator .section h3 { color: #14395d; margin-bottom: 15px; font-size: 1.1rem; }
+        .estimate-calculator label { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding: 8px 12px; background: rgba(56,185,201,0.05); border-radius: 8px; cursor: pointer; font-size: 0.95rem; }
+        .estimate-calculator input[type="radio"], .estimate-calculator input[type="checkbox"] { width: 18px; height: 18px; accent-color: #14395d; flex-shrink: 0; cursor: pointer; }
+        .calc-btn { background: linear-gradient(45deg, #14395d, #38b9c9); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; margin: 10px 0; font-weight: bold; font-size: 1rem; }
+        .result-box { background: linear-gradient(145deg, #14395d, #38b9c9); color: white; padding: 20px; border-radius: 12px; text-align: center; margin: 20px 0 10px; font-size: 1.5rem; font-weight: bold; transition: transform 0.3s; }
+        .result-box.pop { transform: scale(1.03); }
+        .monthly-payment-box { background: linear-gradient(145deg, #45bcd1, #2aa3b8); color: white; padding: 15px; border-radius: 12px; text-align: center; margin: 5px 0 20px; font-size: 1.2rem; font-weight: bold; display: none; }
+        .estimate-action-buttons { display: none; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+        .estimate-action-btn { flex: 1; padding: 18px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; background: linear-gradient(45deg, #28a745, #20c997); color: white; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-    html, body {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #63c5da 0%, #ffffff 100%);
-      padding: 16px;
-      margin: 0;
-    }
+        /* COMPLIANCE BOX */
+        .compliance-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border: 2px solid #2196f3; border-radius: 12px; padding: 18px; margin: 15px 0; }
+        .compliance-box h4 { color: #0d47a1; margin-bottom: 10px; font-size: 1rem; }
+        .compliance-box p { color: #1565c0; font-size: 0.88rem; margin-bottom: 12px; line-height: 1.5; }
+        .compliance-optout-row { display: flex; align-items: flex-start; gap: 10px; background: #ffebee; border: 2px solid #ef9a9a; border-radius: 8px; padding: 12px; margin-top: 10px; }
+        .compliance-optout-row input[type="checkbox"] { margin-top: 2px; accent-color: #c62828; flex-shrink: 0; }
+        .compliance-optout-row label { color: #c62828; font-size: 0.85rem; font-weight: 600; cursor: pointer; line-height: 1.4; }
+        .initials-box { margin-top: 12px; display: none; }
+        .initials-box label { display: block; color: #c62828; font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; }
+        .initials-box input { border: 2px solid #c62828; border-radius: 8px; padding: 10px 14px; font-size: 1rem; font-family: 'Georgia', serif; letter-spacing: 2px; width: 100%; max-width: 200px; text-transform: uppercase; }
+        .initials-disclaimer { font-size: 0.78rem; color: #b71c1c; margin-top: 6px; line-height: 1.4; font-style: italic; }
+        @keyframes bounceDown { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    .app-container {
-      max-width: 480px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 32px;
-      padding: 24px 20px 32px;
-      box-shadow: 0 20px 60px rgba(99, 197, 218, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      margin: 0 auto;
-      position: relative;
-    }
+        /* SERVICE OPTION BUTTONS */
+        .service-options-container { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 28px; }
+        .service-option-btn {
+            background: linear-gradient(45deg, #14395d, #38b9c9);
+            color: white; border: none; padding: 20px 24px;
+            border-radius: 14px; font-size: 1.05rem; font-weight: 700;
+            cursor: pointer; width: 100%;
+            display: flex; align-items: center; gap: 14px;
+            text-align: left; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(20,57,93,0.25);
+        }
+        .service-option-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(20,57,93,0.35); }
+        .service-option-btn:active { transform: translateY(0); }
+        .service-option-btn .btn-icon { font-size: 1.6rem; flex-shrink: 0; }
+        .service-option-btn .btn-text { display: flex; flex-direction: column; }
+        .service-option-btn .btn-label { font-size: 1.05rem; font-weight: 800; }
+        .service-option-btn .btn-sub { font-size: 0.78rem; opacity: 0.85; margin-top: 3px; font-weight: 400; }
+        .service-option-btn.audit-btn { background: linear-gradient(45deg, #0d47a1, #1976d2); }
+        .service-option-btn.demo-btn { background: linear-gradient(45deg, #1b5e20, #2e7d32); }
+        .service-option-btn.selected-service { outline: 3px solid rgba(255,255,255,0.8); outline-offset: 2px; box-shadow: 0 0 0 6px rgba(56,185,201,0.3), 0 8px 25px rgba(20,57,93,0.4) !important; }
+        .service-option-btn.estimate-btn { background: linear-gradient(45deg, #e65100, #f57c00); }
 
-    /* --- HEADER --- */
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-      padding: 0 4px;
-    }
+        /* REQUEST FORM SECTION */
+        .request-form-section { background: linear-gradient(145deg, #f0f7ff, #e8f4f8); border-radius: 16px; padding: 24px; margin: 20px 0; border: 2px solid #38b9c9; }
+        .request-form-section h3 { color: #14395d; margin-bottom: 18px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
 
-    .header h1 {
-      font-size: 26px;
-      font-weight: 800;
-      color: #1a2a3a;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
+        /* WEBSITE TOGGLE */
+        .website-toggle-row { display: flex; gap: 12px; margin-bottom: 12px; }
+        .toggle-yes-no { flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 10px; background: white; font-weight: 600; color: #14395d; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; }
+        .toggle-yes-no.active { border-color: #38b9c9; background: linear-gradient(45deg, #14395d, #38b9c9); color: white; }
 
-    .header h1 span {
-      color: #63c5da;
-    }
+        /* WHATSAPP SEND BTN */
+        .whatsapp-send-btn {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white; border: none; padding: 22px 20px;
+            font-size: 1.2rem; font-weight: bold; border-radius: 50px;
+            cursor: pointer; width: 100%;
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            margin: 25px 0; animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 20px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
-    .header .subtitle {
-      font-size: 15px;
-      color: #2c3e50;
-      font-weight: 500;
-      margin-top: 6px;
-      background: rgba(99, 197, 218, 0.12);
-      display: inline-block;
-      padding: 4px 16px;
-      border-radius: 20px;
-      backdrop-filter: blur(4px);
-    }
-
-    .header .tagline {
-      font-size: 13px;
-      color: #4a5a6a;
-      margin-top: 8px;
-      font-weight: 400;
-      opacity: 0.8;
-    }
-
-    /* --- VIDEO SECTION 1: YouTube Shorts --- */
-    .video-section-shorts {
-      margin: 16px 0 12px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(99, 197, 218, 0.15);
-      background: #000;
-      aspect-ratio: 9 / 16;
-      position: relative;
-      width: 100%;
-      max-height: 480px;
-    }
-
-    .video-section-shorts iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-      border: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    /* --- VIDEO SECTION 2: Vimeo --- */
-    .video-section-vimeo {
-      margin: 12px 0 16px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(99, 197, 218, 0.15);
-      background: #000;
-      aspect-ratio: 16 / 9;
-      position: relative;
-      width: 100%;
-    }
-
-    .video-section-vimeo iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-      border: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    /* --- BOLD MESSAGE SECTION --- */
-    .message-section {
-      background: linear-gradient(135deg, rgba(99, 197, 218, 0.15), rgba(255, 255, 255, 0.5));
-      border-radius: 20px;
-      padding: 20px 18px;
-      margin: 16px 0 16px;
-      border-left: 5px solid #63c5da;
-      box-shadow: 0 4px 16px rgba(99, 197, 218, 0.1);
-    }
-
-    .message-section .highlight {
-      font-size: 20px;
-      font-weight: 800;
-      color: #1a2a3a;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .message-section .highlight .emoji {
-      font-size: 28px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .message-section .highlight .text {
-      display: block;
-    }
-
-    .message-section .highlight .text .bold-blue {
-      color: #63c5da;
-      font-weight: 900;
-      text-decoration: underline;
-      text-decoration-thickness: 3px;
-      text-underline-offset: 4px;
-    }
-
-    .message-section .sub-message {
-      font-size: 16px;
-      font-weight: 600;
-      color: #2c3e50;
-      line-height: 1.5;
-      padding-left: 38px;
-      margin-top: 4px;
-    }
-
-    .message-section .sub-message .callout {
-      display: inline-block;
-      background: #63c5da;
-      color: white;
-      padding: 2px 12px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
-    /* --- 📞 QUICK CONTACT SECTION --- */
-    .quick-contact {
-      background: linear-gradient(135deg, #63c5da, #4aadc4);
-      border-radius: 20px;
-      padding: 18px 20px;
-      margin: 16px 0 20px;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(99, 197, 218, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .quick-contact .label {
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .quick-contact .phone-number {
-      font-size: 28px;
-      font-weight: 900;
-      color: white;
-      letter-spacing: 1px;
-      display: block;
-      margin: 4px 0;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .quick-contact .phone-number a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .quick-contact .phone-number a:hover {
-      text-decoration: underline;
-    }
-
-    .quick-contact .cta-text {
-      font-size: 15px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.95);
-      margin-top: 6px;
-    }
-
-    .quick-contact .cta-text .emoji-big {
-      font-size: 20px;
-    }
-
-    .quick-contact .divider {
-      display: inline-block;
-      width: 40px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.4);
-      margin: 6px 0;
-      border-radius: 4px;
-    }
-
-    /* --- ACTION BUTTONS --- */
-    .action-buttons {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 22px;
-      width: 100%;
-    }
-
-    .action-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 8px;
-      border-radius: 40px;
-      border: none;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      background: white;
-      color: #1a2a3a;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(99, 197, 218, 0.2);
-      text-decoration: none;
-      min-height: 48px;
-    }
-
-    .action-btn:active {
-      transform: scale(0.97);
-    }
-
-    .action-btn.primary {
-      background: linear-gradient(135deg, #63c5da, #4aadc4);
-      color: white;
-      border: none;
-      box-shadow: 0 6px 16px rgba(99, 197, 218, 0.3);
-    }
-
-    .action-btn.primary:active {
-      box-shadow: 0 3px 8px rgba(99, 197, 218, 0.2);
-    }
-
-    .action-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-
-    /* --- FORM STYLES --- */
-    .form-group {
-      margin-bottom: 16px;
-      width: 100%;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #1a2a3a;
-      margin-bottom: 5px;
-      letter-spacing: 0.3px;
-    }
-
-    .form-group label .required {
-      color: #e74c3c;
-      margin-left: 2px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e8edf2;
-      border-radius: 16px;
-      font-size: 15px;
-      background: white;
-      transition: all 0.25s ease;
-      outline: none;
-      color: #1a2a3a;
-      display: block;
-      appearance: auto;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #63c5da;
-      box-shadow: 0 0 0 4px rgba(99, 197, 218, 0.12);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-      font-family: inherit;
-    }
-
-    .form-group .char-count {
-      text-align: right;
-      font-size: 12px;
-      color: #8a9aa8;
-      margin-top: 4px;
-      padding-right: 4px;
-    }
-
-    .form-group .char-count.warning {
-      color: #e67e22;
-    }
-
-    .form-group .char-count.danger {
-      color: #e74c3c;
-    }
-
-    /* Toggle Group */
-    .toggle-group {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-
-    .toggle-group label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      font-size: 14px;
-      color: #2c3e50;
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 30px;
-      background: #f0f4f8;
-      transition: all 0.2s;
-      margin: 0;
-    }
-
-    .toggle-group label:has(input:checked) {
-      background: #63c5da;
-      color: white;
-      box-shadow: 0 4px 12px rgba(99, 197, 218, 0.25);
-    }
-
-    .toggle-group input[type="radio"],
-    .toggle-group input[type="checkbox"] {
-      accent-color: #63c5da;
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      margin: 0;
-      flex-shrink: 0;
-    }
-
-    .toggle-group label:has(input:checked) input {
-      accent-color: white;
-    }
-
-    /* Submit Button */
-    .submit-btn {
-      width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, #63c5da 0%, #4aadc4 100%);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 24px rgba(99, 197, 218, 0.3);
-      letter-spacing: 0.5px;
-      margin-top: 8px;
-      display: block;
-    }
-
-    .submit-btn:active {
-      transform: scale(0.97);
-      box-shadow: 0 4px 12px rgba(99, 197, 218, 0.2);
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(99, 197, 218, 0.4);
-    }
-
-    /* Toast */
-    .toast {
-      display: none;
-      background: #27ae60;
-      color: white;
-      padding: 14px 20px;
-      border-radius: 16px;
-      margin-top: 16px;
-      text-align: center;
-      font-weight: 500;
-      font-size: 14px;
-      box-shadow: 0 8px 24px rgba(39, 174, 96, 0.25);
-      animation: fadeInUp 0.4s ease;
-      width: 100%;
-    }
-
-    .toast.error {
-      background: #e74c3c;
-      box-shadow: 0 8px 24px rgba(231, 76, 60, 0.25);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .toast.show {
-      display: block;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #7a8a9a;
-      letter-spacing: 0.5px;
-      padding: 0 4px;
-    }
-
-    .footer a {
-      color: #63c5da;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* --- RESPONSIVE FIXES --- */
-    @media (max-width: 480px) {
-      body {
-        padding: 12px;
-        align-items: flex-start;
-        padding-top: 20px;
-      }
-      
-      .app-container {
-        padding: 20px 16px 28px;
-        border-radius: 28px;
-      }
-      
-      .header h1 {
-        font-size: 24px;
-      }
-      
-      .message-section .highlight {
-        font-size: 18px;
-      }
-      
-      .message-section .sub-message {
-        font-size: 15px;
-        padding-left: 0;
-        margin-top: 8px;
-      }
-      
-      .message-section .highlight .emoji {
-        font-size: 24px;
-      }
-      
-      .quick-contact .phone-number {
-        font-size: 24px;
-      }
-      
-      .action-btn {
-        font-size: 14px;
-        padding: 10px 6px;
-        min-height: 44px;
-      }
-      
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 12px 14px;
-        font-size: 14px;
-      }
-      
-      .submit-btn {
-        font-size: 18px;
-        padding: 16px;
-      }
-      
-      .video-section-shorts {
-        max-height: 400px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      body {
-        padding: 8px;
-        padding-top: 12px;
-      }
-      
-      .app-container {
-        padding: 16px 12px 24px;
-        border-radius: 24px;
-      }
-      
-      .header h1 {
-        font-size: 20px;
-      }
-      
-      .message-section {
-        padding: 14px 12px;
-      }
-      
-      .message-section .highlight {
-        font-size: 16px;
-        flex-wrap: wrap;
-      }
-      
-      .message-section .sub-message {
-        font-size: 14px;
-      }
-      
-      .quick-contact {
-        padding: 14px 16px;
-      }
-      
-      .quick-contact .phone-number {
-        font-size: 20px;
-      }
-      
-      .quick-contact .cta-text {
-        font-size: 13px;
-      }
-      
-      .action-btn {
-        font-size: 12px;
-        padding: 8px 4px;
-        gap: 4px;
-        min-height: 38px;
-      }
-      
-      .action-btn svg {
-        width: 16px;
-        height: 16px;
-      }
-      
-      .toggle-group label {
-        padding: 6px 12px;
-        font-size: 13px;
-      }
-      
-      .video-section-shorts {
-        max-height: 320px;
-      }
-    }
-
-    /* Landscape phone fix */
-    @media (max-height: 600px) and (orientation: landscape) {
-      body {
-        align-items: flex-start;
-        padding: 12px;
-      }
-      
-      .app-container {
-        padding: 16px;
-      }
-      
-      .video-section-shorts {
-        aspect-ratio: 16 / 9;
-        max-height: 140px;
-        margin: 10px 0 8px;
-      }
-      
-      .video-section-vimeo {
-        max-height: 140px;
-        margin: 8px 0 10px;
-      }
-      
-      .header {
-        margin-bottom: 8px;
-      }
-      
-      .header h1 {
-        font-size: 18px;
-      }
-      
-      .header .subtitle {
-        font-size: 12px;
-        padding: 2px 12px;
-      }
-      
-      .header .tagline {
-        font-size: 11px;
-        margin-top: 4px;
-      }
-      
-      .message-section {
-        padding: 10px 14px;
-        margin: 10px 0 10px;
-      }
-      
-      .message-section .highlight {
-        font-size: 14px;
-        margin-bottom: 4px;
-      }
-      
-      .message-section .sub-message {
-        font-size: 12px;
-        padding-left: 0;
-      }
-      
-      .message-section .highlight .emoji {
-        font-size: 18px;
-      }
-      
-      .quick-contact {
-        padding: 10px 14px;
-        margin: 10px 0 12px;
-      }
-      
-      .quick-contact .phone-number {
-        font-size: 18px;
-      }
-      
-      .quick-contact .cta-text {
-        font-size: 12px;
-      }
-      
-      .quick-contact .label {
-        font-size: 11px;
-      }
-      
-      .form-group {
-        margin-bottom: 8px;
-      }
-      
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-      
-      .form-group textarea {
-        min-height: 40px;
-      }
-      
-      .action-buttons {
-        margin-bottom: 10px;
-      }
-      
-      .action-btn {
-        min-height: 32px;
-        font-size: 11px;
-        padding: 6px 4px;
-      }
-      
-      .submit-btn {
-        font-size: 16px;
-        padding: 12px;
-      }
-    }
-  </style>
+        /* SUBMIT BUTTONS ROW */
+        .submit-buttons-row { display: flex; flex-direction: column; gap: 12px; margin: 25px 0 10px; }
+        .submit-btn { padding: 18px 20px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 700; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.2s; }
+        .submit-btn:hover { transform: scale(1.02); }
+        .submit-btn.whatsapp-submit { background: linear-gradient(45deg, #25d366, #128c7e); color: white; }
+        .submit-btn.sms-submit { background: linear-gradient(45deg, #14395d, #38b9c9); color: white; }
+        .submit-btn i { font-size: 1.3rem; }
+    </style>
 </head>
 <body>
 
-<div class="app-container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <h1>The <span>WebSwan</span></h1>
-    <div class="subtitle">📱 Phone Application for Small Businesses</div>
-    <div class="tagline">⚡ Lead generating · Working 24/7 on your behalf</div>
-  </div>
-
-  <!-- 🎬 VIDEO 1: YouTube Shorts -->
-  <div class="video-section-shorts">
-    <iframe 
-      src="https://www.youtube.com/embed/WWdzB9BJeUU?rel=0&modestbranding=1" 
-      title="The WebSwan - Phone Application for Small Business Owners"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <!-- 🎬 VIDEO 2: Vimeo -->
-  <div class="video-section-vimeo">
-    <iframe 
-      src="https://player.vimeo.com/video/1215027536?h=fe&autoplay=0&loop=0&portrait=0&byline=0&title=0" 
-      title="The WebSwan - Capture More Customers"
-      allow="autoplay; fullscreen; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <!-- 🔥 BOLD MESSAGE SECTION -->
-  <div class="message-section">
-    <div class="highlight">
-      <span class="emoji">🚀</span>
-      <span class="text">
-        We make sure <span class="bold-blue">every call or email</span> gets handled so you <span class="bold-blue">never miss customers!</span>
-      </span>
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-container">
+            <div class="admin-header"><h2><i class="fas fa-crown"></i> WebSwan Admin</h2><button class="admin-close-btn" onclick="hideAdminPanel()"><i class="fas fa-times"></i></button></div>
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab(event, 'specials')">🎯 Specials</button>
+                <button class="admin-tab" onclick="switchAdminTab(event, 'timer')">⏱️ Timer</button>
+                <button class="admin-tab" onclick="switchAdminTab(event, 'settings')">⚙️ Settings</button>
+            </div>
+            <div id="adminSpecials" style="display:block;">
+                <div class="admin-special-section" style="margin-bottom:20px;">
+                    <h3 style="margin-bottom:5px;">📱 PWA Promotion Toggles</h3>
+                    <p style="font-size:0.82rem;color:#888;margin-bottom:15px;">Toggle ON to show promo prices in the estimate.</p>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;background:#f9f9f9;padding:12px 16px;border-radius:12px;border:1px solid #ddd;">
+                            <div><div style="font-weight:700;font-size:0.9rem;">🔥 Standalone PWA Promo</div><div style="font-size:0.78rem;color:#888;">$1,599 + $109/mo</div></div>
+                            <div style="display:flex;align-items:center;gap:8px;"><span id="labelPromoStandalone" style="font-size:0.75rem;color:#999;">OFF</span><div onclick="togglePwaPromo('standalone')" id="togglePromoStandalone" style="width:48px;height:26px;background:#ccc;border-radius:26px;cursor:pointer;position:relative;transition:background 0.3s;"><div id="knobPromoStandalone" style="position:absolute;top:3px;left:3px;width:20px;height:20px;background:white;border-radius:50%;transition:left 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div></div></div>
+                        </div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;background:#f9f9f9;padding:12px 16px;border-radius:12px;border:1px solid #ddd;">
+                            <div><div style="font-weight:700;font-size:0.9rem;">🔥 Premium Package Promo</div><div style="font-size:0.78rem;color:#888;">$2,499 + $109/mo <span style="color:#ff6b00;font-weight:700;">(Special from $3,500)</span></div></div>
+                            <div style="display:flex;align-items:center;gap:8px;"><span id="labelPromoPremiumPackage" style="font-size:0.75rem;color:#999;">OFF</span><div onclick="togglePwaPromo('premiumPackage')" id="togglePromoPremiumPackage" style="width:48px;height:26px;background:#ccc;border-radius:26px;cursor:pointer;position:relative;transition:background 0.3s;"><div id="knobPromoPremiumPackage" style="position:absolute;top:3px;left:3px;width:20px;height:20px;background:white;border-radius:50%;transition:left 0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-special-section">
+                    <div class="admin-special-input-group">
+                        <label>Special Price ($): <span style="font-size:0.7rem;color:#888;">(Format: 0XXXX, min 0500)</span></label>
+                        <input type="text" inputmode="numeric" id="adminSpecialPriceInput" placeholder="e.g. 01000" maxlength="6">
+                        <button onclick="applyAdminSpecialPrice()">Apply Special</button>
+                        <button onclick="clearAdminSpecialPrice()" style="background:linear-gradient(45deg,#dc3545,#c82333);color:white;">🗑️ Clear</button>
+                    </div>
+                    <div class="admin-special-timer">
+                        <div><div id="adminTimerStatus">⚡ Enter special price to begin</div><div class="admin-timer-display" id="adminTimerDisplay">Ready</div></div>
+                        <button id="adminAcceptSpecialBtn" onclick="acceptAdminSpecialPrice()" disabled>Accept Special</button>
+                    </div>
+                    <div id="adminSpecialActiveBadge" style="display:none;background:#d4edda;padding:10px;border-radius:8px;margin-top:10px;">Special Active: $<span id="adminSpecialAmount">0</span></div>
+                </div>
+            </div>
+            <div id="adminTimer" style="display:none;"><div class="admin-special-section"><h3>Timer Settings</h3><p>Use the Specials tab above</p></div></div>
+            <div id="adminSettings" style="display:none;"><div class="change-password-box"><h3>Change Password</h3><form id="changePasswordForm"><label>Current</label><input type="password" id="currentPassword"><label>New</label><input type="password" id="newPassword"><label>Confirm</label><input type="password" id="confirmPassword"><button type="submit">Update</button></form></div></div>
+        </div>
     </div>
-    <div class="sub-message">
-      💡 If you'd like for us to help you <strong>capture more customers</strong>, fill out the form below and we will follow-up 
-      <span class="callout">⚡ Fast Response</span>
+    <button class="admin-login-btn" id="adminLoginBtn"><i class="fas fa-lock"></i></button>
+
+    <!-- MAIN UI -->
+    <div class="webs-container">
+        <div class="header-toolbar">
+            <div class="language-switcher"><select id="languageSwitcher" class="lang-select"><option value="en">🇺🇸 English</option><option value="es">🇪🇸 Español</option><option value="fr">🇫🇷 Français</option><option value="pt">🇧🇷 Português</option><option value="ht">🇭🇹 Kreyòl Ayisyen</option></select></div>
+            <button class="header-install-btn" id="headerInstallBtn"><i class="fas fa-download"></i> INSTALL</button>
+        </div>
+        <div class="form-container">
+            <div class="mobile-nav"><button class="mobile-nav-btn active" id="navToAppointment">📋 Request Service</button><button class="mobile-nav-btn" id="navToQuestion">❓ Ask Questions</button></div>
+            <div class="form-wrapper" id="formWrapper">
+
+                <!-- LEFT PANEL — Request Form -->
+                <div class="form-panel appointment-panel" id="topOfForm">
+                    <div class="header"><h1>WebSwan Services</h1><div class="emoji-container"><div class="emoji">🛜</div><div class="emoji">💯</div><div class="emoji">🗣</div><div class="emoji">🌐</div><div class="emoji">💻</div><div class="emoji">📱</div><div class="emoji">📊</div><div class="emoji">🎯</div></div></div>
+
+                    <h2 class="panel-title">What Can We Help You With?</h2>
+
+                    <!-- SERVICE OPTION BUTTONS -->
+                    <div class="service-options-container">
+                        <button class="service-option-btn" onclick="selectService('analyst', this)">
+                            <span class="btn-icon">🔍</span>
+                            <span class="btn-text">
+                                <span class="btn-label">Need a Website Analyst</span>
+                                <span class="btn-sub">We'll analyze your site performance, SEO &amp; visibility</span>
+                            </span>
+                        </button>
+                        <button class="service-option-btn audit-btn" onclick="selectService('audit', this)">
+                            <span class="btn-icon">⚖️</span>
+                            <span class="btn-text">
+                                <span class="btn-label">Need a Website Audit</span>
+                                <span class="btn-sub">Full compliance, ADA &amp; technical audit report</span>
+                            </span>
+                        </button>
+                        <button class="service-option-btn demo-btn" onclick="selectService('demo', this)">
+                            <span class="btn-icon">🎁</span>
+                            <span class="btn-text">
+                                <span class="btn-label">Need a Complimentary Website Demo</span>
+                                <span class="btn-sub">See a complimentary demo of your website</span>
+                            </span>
+                        </button>
+                        <button class="service-option-btn estimate-btn" onclick="scrollToServiceAndOpenModal()">
+                            <span class="btn-icon">📊</span>
+                            <span class="btn-text">
+                                <span class="btn-label">Select your Services to Estimate your Package</span>
+                                <span class="btn-sub">Get a custom price estimate for your project</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="waiver-notice"><i class="fas fa-check-circle"></i> If you have a website with us, the set-up fee for advertising is waived! You only pay the monthly subscription.</div>
+
+                    <!-- REQUEST FORM -->
+                    <div class="request-form-section" id="requestFormSection">
+                        <h3><i class="fas fa-paper-plane" style="color:#38b9c9;"></i> <span id="requestFormTitle">Request More Info</span></h3>
+
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span style="color:#dc3545;">*</span></label>
+                            <input type="text" class="form-input" id="reqName" placeholder="Your Full Name" oninput="checkWhatsAppReady()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span style="color:#dc3545;">*</span></label>
+                            <input type="tel" class="form-input" id="reqPhone" placeholder="(555) 555-5555" oninput="checkWhatsAppReady()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Business Name <span style="color:#dc3545;">*</span></label>
+                            <input type="text" class="form-input" id="reqBusiness" placeholder="Your Business Name" oninput="checkWhatsAppReady()">
+                        </div>
+
+                        <!-- Website yes/no -->
+                        <div class="form-group">
+                            <label class="form-label">Do you have a website?</label>
+                            <div class="website-toggle-row">
+                                <button class="toggle-yes-no" id="toggleYes" onclick="setHasWebsite(true)">✅ Yes</button>
+                                <button class="toggle-yes-no active" id="toggleNo" onclick="setHasWebsite(false)">❌ No</button>
+                            </div>
+                            <div id="websiteUrlGroup" style="display:none;">
+                                <input type="url" class="form-input" id="reqWebsite" placeholder="yoursite.com" oninput="checkWhatsAppReady()">
+                            </div>
+                        </div>
+
+                        <div class="consent-notice"><i class="fas fa-check-circle"></i> By submitting this form, you agree to being contacted by WebSwan.</div>
+
+                        <!-- SUBMIT BUTTONS -->
+                        <div class="submit-buttons-row">
+                            <button class="submit-btn whatsapp-submit" onclick="sendWhatsAppSubmit()">
+                                <i class="fab fa-whatsapp"></i> Submit via WhatsApp
+                            </button>
+                            <button class="submit-btn sms-submit" onclick="sendSmsSubmit()">
+                                <i class="fas fa-comment-alt"></i> Submit via SMS
+                            </button>
+                        </div>
+                    </div>
+                    <!-- END REQUEST FORM -->
+
+                    <a href="https://taniad2169.github.io/WebSwan-Portfolio/" target="_blank" class="portfolio-btn"><i class="fas fa-images"></i> View Portfolio</a>
+                    <div class="video-title"><i class="fas fa-play-circle"></i> Small Business Advertising</div><div class="video-container"><iframe src="https://www.youtube.com/embed/KRMrXPFNkQs" frameborder="0" allowfullscreen></iframe></div>
+                    <div class="video-title" style="margin-top:25px;"><i class="fas fa-play-circle"></i> UX/UI Certified Web Designer</div><div class="video-container"><iframe src="https://www.youtube.com/embed/z4L_hzXmQRA" frameborder="0" allowfullscreen></iframe></div>
+                    <a href="tel:4158770687" class="call-btn"><i class="fas fa-phone-alt"></i> Call Now: (415) 877-0687</a>
+                </div>
+
+                <!-- RIGHT PANEL — Questions -->
+                <div class="form-panel questions-panel" id="questionsPanel">
+                    <h2 class="panel-title">Questions About Our Services?</h2>
+                    <p style="margin-bottom:20px;">Leave your details and we will contact you.</p>
+                    <div class="pricing-links-container">
+                        <a href="https://www.google.com/search?q=price+for+custom+web+development+from+a+certified+web+developer+ui%2Fux+expert" target="_blank" class="view-pricing-link market-price"><i class="fas fa-chart-line"></i> UX/UI Market Price</a>
+                        <a href="https://www.google.com/search?q=price+for+pwa+progressive+web+app+development+2026" target="_blank" class="view-pricing-link pwa-price"><i class="fas fa-mobile-alt"></i> Phone App Market Price</a>
+                        <a href="https://www.google.com/search?q=price+for+ecommerce+custom+website+2026" target="_blank" class="view-pricing-link ecommerce-price"><i class="fas fa-shopping-cart"></i> E-Commerce Market Price</a>
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group"><label class="form-label">Full Name:</label><input type="text" class="form-input" id="questionName" placeholder="Your Name"></div>
+                        <div class="form-group"><label class="form-label">Phone Number:</label><input type="tel" class="form-input" id="questionPhone" placeholder="Phone Number"></div>
+                        <div class="form-group"><label class="form-label">Email (Optional)</label><input type="email" class="form-input" id="questionEmail" placeholder="your@email.com"></div>
+                        <div class="question-form-group"><label class="question-label">What are you interested in?</label><select id="questionService" onchange="toggleOtherServiceQuestion(this.value)"><option value="">Select an option</option><option value="custom-web-design">Custom Web Design</option><option value="ecommerce-site">🛒 E-Commerce Website</option><option value="landing-page">Landing Page</option><option value="pwa-app-premium">Standard Phone App Plus</option><option value="other">Other</option></select></div>
+                        <div id="otherQuestionContainer" class="other-service-container"><label>Please describe your request:</label><textarea id="otherQuestionText" class="form-textarea" placeholder="Tell us more..."></textarea></div>
+                        <div class="form-group"><label class="form-label">Message:</label><textarea class="form-textarea" id="questionMessage" placeholder="How can we help you?"></textarea></div>
+                        <div class="consent-notice"><i class="fas fa-check-circle"></i> By submitting this form, you agree to being contacted.</div>
+                        <button type="submit" class="sms-btn"><i class="fas fa-comment-alt"></i> SMS to (415) 877-0687</button>
+                        <a href="tel:4158770687" class="call-btn"><i class="fas fa-phone-alt"></i> Call Now: (415) 877-0687</a>
+                    </form>
+                    <div class="state-compliance-section">
+                        <div style="font-weight:700;color:#0d47a1;margin-bottom:15px;"><i class="fas fa-gavel"></i> State Compliance Search</div>
+                        <div class="state-search-container"><input type="text" class="state-input" id="stateInput" placeholder="Enter state name"><button class="state-search-btn" onclick="searchStateCompliance()">Check State</button></div>
+                        <div class="state-result" id="stateResult"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span id="selectedStateName"></span><button class="footer-copy-btn" onclick="copyStateLink()"><i class="fas fa-copy"></i></button></div><div><span id="stateLinkDisplay" style="word-break:break-all;font-size:0.85rem;color:#2196f3;"></span></div><a href="#" id="stateLinkAnchor" target="_blank" style="display:inline-block;margin-top:10px;background:linear-gradient(45deg,#4caf50,#388e3c);color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">Open in Google Search</a></div>
+                        <div id="stateError" style="color:#c62828;margin-top:10px;"></div>
+                    </div>
+                    <!-- Share Links -->
+                    <div class="footer-copy-section">
+                        <div style="font-weight:700;color:#14395d;margin-bottom:15px;"><i class="fas fa-link"></i> Share These Links</div>
+                        <div class="footer-copy-item"><div><div style="font-weight:700;">Advertising Links</div><div style="font-size:0.8rem;color:#38b9c9;">https://taniad2169.github.io/WSM-advertising-links/</div></div><button class="footer-copy-btn" onclick="copyLinkWithFallback('https://taniad2169.github.io/WSM-advertising-links/', this)"><i class="fas fa-copy"></i></button></div>
+                        <div class="footer-copy-item" style="border-left-color:#ff6b00;"><div><div style="font-weight:700;color:#ff6b00;">📱 Share WebSwan Services</div><div style="font-size:0.8rem;color:#ff6b00;">Click to copy link</div></div><button class="footer-copy-btn" onclick="copyPageLink()"><i class="fas fa-copy"></i></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-footer"><i class="far fa-copyright"></i> 2026 The WebSwan. All rights reserved. Made with <i class="fas fa-heart"></i> in the USA</div>
+        </div>
     </div>
-  </div>
 
-  <!-- 📞 QUICK CONTACT SECTION -->
-  <div class="quick-contact">
-    <div class="label">📞 Quick Answer?</div>
-    <span class="phone-number">
-      <a href="tel:+14158770687">(415) 877-0687</a>
-    </span>
-    <div class="divider"></div>
-    <span class="phone-number" style="font-size: 22px;">
-      <a href="https://wa.me/14158770687">💬 +1 (415) 877-0687</a>
-    </span>
-    <div class="cta-text">
-      <span class="emoji-big">⚡</span> Call or WhatsApp for a quick response!
-    </div>
-  </div>
-
-  <!-- ACTION BUTTONS -->
-  <div class="action-buttons">
-    <!-- Share Button -->
-    <button class="action-btn" id="shareBtn">
-      <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-      Share
-    </button>
-
-    <!-- Install App Button -->
-    <button class="action-btn primary" id="installBtn">
-      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-      Install App
-    </button>
-  </div>
-
-  <!-- LEAD FORM -->
-  <form id="leadForm">
-    <div class="form-group">
-      <label>Full Name <span class="required">*</span></label>
-      <input type="text" id="fullName" placeholder="e.g. John Doe" required>
+    <!-- Estimate Modal -->
+    <div class="estimate-modal" id="estimateModal">
+        <div class="estimate-modal-content">
+            <div class="estimate-modal-header"><h2><i class="fas fa-calculator"></i> Project Estimate</h2><button class="close-modal" id="closeEstimateModal"><i class="fas fa-times"></i></button></div>
+            <div style="background:linear-gradient(135deg,rgba(56,185,201,0.15),rgba(20,57,93,0.08));border-bottom:2px solid rgba(56,185,201,0.3);padding:12px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span style="font-size:1.3rem;">👇</span>
+                <span style="font-size:0.88rem;color:#14395d;font-weight:600;line-height:1.4;">
+                    <strong>Scroll down</strong> to view our full pricing menu, select your package &amp; add-ons — your estimate calculates automatically as you go!
+                </span>
+                <span style="font-size:1.3rem;animation:bounceDown 1.2s ease-in-out infinite;">⬇️</span>
+            </div>
+            <div class="estimate-modal-body" id="estimateModalBody"></div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label>Phone Number <span class="required">*</span></label>
-      <input type="tel" id="phoneNumber" placeholder="e.g. +1 415 877 0687" required>
-    </div>
+    <script>
+        // ===== GLOBALS =====
+        let specialPriceActive = false, specialPriceAmount = 0, specialPriceTimer = null, specialPriceTimeLeft = 300;
+        let adminClickCount = 0;
+        const pwaPromoState = { standalone: false, premiumPackage: false };
+        const ADMIN_PASS = "333777";
+        let hasWebsite = false;
+        let selectedService = '';
 
-    <div class="form-group">
-      <label>Business Name <span class="required">*</span></label>
-      <input type="text" id="businessName" placeholder="e.g. Swan Marketing" required>
-    </div>
-
-    <!-- 🆕 UPDATED: Service Interested In Dropdown with 3 Options -->
-    <div class="form-group">
-      <label>Service Interested In <span class="required">*</span></label>
-      <select id="serviceInterest" required>
-        <option value="">— Please Select —</option>
-        <option value="Phone Application">📱 Phone Application</option>
-        <option value="Lead Management & Customer Follow-up">🎯 Lead Management & Customer Follow-up</option>
-        <option value="Both">🔥 Both</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Do you have a website? <span class="required">*</span></label>
-      <select id="hasWebsite" required>
-        <option value="">— Select —</option>
-        <option value="yes">✅ Yes</option>
-        <option value="no">❌ No</option>
-      </select>
-    </div>
-
-    <div class="form-group" id="websiteGroup" style="display: none;">
-      <label>Website URL</label>
-      <input type="url" id="websiteUrl" placeholder="https://www.yourwebsite.com">
-    </div>
-
-    <div class="form-group">
-      <label>Comments / Message</label>
-      <textarea id="commentBox" placeholder="Tell us about your business, goals, or any special requests..." maxlength="1800"></textarea>
-      <div class="char-count" id="charCount">0 / 300 words</div>
-    </div>
-
-    <div class="form-group">
-      <label>Preferred contact method</label>
-      <div class="toggle-group">
-        <label><input type="radio" name="contactMethod" value="Call" checked> 📞 Call</label>
-        <label><input type="radio" name="contactMethod" value="Text"> 💬 Text</label>
-        <label><input type="radio" name="contactMethod" value="Either"> 🔄 Either</label>
-      </div>
-    </div>
-
-    <button type="submit" class="submit-btn">💬 Click Here to Submit</button>
-    <div class="toast" id="toast"></div>
-  </form>
-
-  <div class="footer">
-    © 2026 <a href="#">The WebSwan</a> · All rights reserved.
-  </div>
-</div>
-
-<script>
-  (function() {
-    // --- DOM refs ---
-    const form = document.getElementById('leadForm');
-    const fullName = document.getElementById('fullName');
-    const phoneNumber = document.getElementById('phoneNumber');
-    const businessName = document.getElementById('businessName');
-    const serviceInterest = document.getElementById('serviceInterest');
-    const hasWebsite = document.getElementById('hasWebsite');
-    const websiteGroup = document.getElementById('websiteGroup');
-    const websiteUrl = document.getElementById('websiteUrl');
-    const commentBox = document.getElementById('commentBox');
-    const charCount = document.getElementById('charCount');
-    const toast = document.getElementById('toast');
-    const shareBtn = document.getElementById('shareBtn');
-    const installBtn = document.getElementById('installBtn');
-
-    // --- Website toggle ---
-    hasWebsite.addEventListener('change', function() {
-      if (this.value === 'yes') {
-        websiteGroup.style.display = 'block';
-        websiteUrl.required = true;
-        if (!websiteUrl.value) {
-          websiteUrl.value = 'https://www.';
+        // ===== SERVICE OPTION BUTTONS =====
+        function selectService(type, btn) {
+            selectedService = type;
+            const titles = {
+                analyst: '🔍 Website Analyst Request',
+                audit:   '⚖️ Website Audit Request',
+                demo:    '🎁 Complimentary Website Demo Request'
+            };
+            document.getElementById('requestFormTitle').innerText = titles[type] || 'Service Request';
+            document.querySelectorAll('.service-option-btn').forEach(b => b.classList.remove('selected-service'));
+            if (btn) btn.classList.add('selected-service');
+            setTimeout(() => {
+                document.getElementById('requestFormSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
         }
-      } else {
-        websiteGroup.style.display = 'none';
-        websiteUrl.required = false;
-        websiteUrl.value = '';
-      }
-    });
 
-    websiteUrl.addEventListener('focus', function() {
-      if (!this.value || this.value === '') {
-        this.value = 'https://www.';
-      }
-    });
-
-    websiteUrl.addEventListener('input', function() {
-      if (!this.value.startsWith('https://www.')) {
-        this.value = 'https://www.' + this.value.replace(/^https?:\/\/www\.?/i, '');
-      }
-    });
-
-    // --- Word counter ---
-    commentBox.addEventListener('input', function() {
-      const text = this.value;
-      const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-      const maxWords = 300;
-      charCount.textContent = `${Math.min(wordCount, maxWords)} / ${maxWords} words`;
-
-      if (wordCount > maxWords) {
-        const words = text.trim().split(/\s+/);
-        const truncated = words.slice(0, maxWords).join(' ');
-        this.value = truncated;
-        charCount.textContent = `${maxWords} / ${maxWords} words`;
-        charCount.className = 'char-count danger';
-      } else if (wordCount > maxWords * 0.8) {
-        charCount.className = 'char-count warning';
-      } else {
-        charCount.className = 'char-count';
-      }
-    });
-
-    // --- Phone format helper ---
-    phoneNumber.addEventListener('blur', function() {
-      let val = this.value.trim();
-      if (val && !val.startsWith('+')) {
-        if (/^\d{10}$/.test(val)) {
-          this.value = '+1' + val;
-        } else if (/^\d{11}$/.test(val) && val.startsWith('1')) {
-          this.value = '+' + val;
+        // ===== WEBSITE YES/NO TOGGLE =====
+        function setHasWebsite(val) {
+            hasWebsite = val;
+            document.getElementById('toggleYes').classList.toggle('active', val);
+            document.getElementById('toggleNo').classList.toggle('active', !val);
+            const urlGroup = document.getElementById('websiteUrlGroup');
+            urlGroup.style.display = val ? 'block' : 'none';
+            if (val) {
+                const input = document.getElementById('reqWebsite');
+                if (!input.value) input.value = 'https://www.';
+                input.focus();
+                setTimeout(() => { input.selectionStart = input.selectionEnd = input.value.length; }, 10);
+            }
         }
-      }
-    });
 
-    // --- SHARE BUTTON ---
-    shareBtn.addEventListener('click', function() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'The WebSwan - Lead Generation App',
-          text: '🚀 Capture more customers with The WebSwan! Every call & email handled so you never miss a lead.',
-          url: window.location.href
-        }).catch(() => {});
-      } else {
-        navigator.clipboard?.writeText(window.location.href).then(() => {
-          showToast('✅ Link copied to clipboard!', '');
-        }).catch(() => {
-          prompt('Copy this link to share:', window.location.href);
+        // ===== WHATSAPP SUBMIT =====
+        function sendWhatsAppSubmit() {
+            const name = document.getElementById('reqName')?.value.trim();
+            const phone = document.getElementById('reqPhone')?.value.trim();
+            const business = document.getElementById('reqBusiness')?.value.trim();
+            const website = hasWebsite ? (document.getElementById('reqWebsite')?.value.trim() || 'Not provided') : 'No website';
+
+            if (!name || !phone || !business) {
+                alert('Please fill in your name, phone, and business name first.');
+                return;
+            }
+
+            const serviceMap = {
+                analyst: 'Website Analyst',
+                audit: 'Website Audit',
+                demo: 'Complimentary Website Demo'
+            };
+            const serviceLabel = serviceMap[selectedService] || selectedService || 'General Inquiry';
+
+            const msg = encodeURIComponent(
+                `🦢 *WebSwan Service Request*
+─────────────────────
+📋 *Service:* ${serviceLabel}
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+🏢 *Business:* ${business}
+🌐 *Website:* ${website}
+─────────────────────
+Sent via WebSwan Services App`
+            );
+            window.open(`https://wa.me/14158770687?text=${msg}`, '_blank');
+        }
+
+        // ===== SMS SUBMIT =====
+        function sendSmsSubmit() {
+            const name = document.getElementById('reqName')?.value.trim();
+            const phone = document.getElementById('reqPhone')?.value.trim();
+            const business = document.getElementById('reqBusiness')?.value.trim();
+            const website = hasWebsite ? (document.getElementById('reqWebsite')?.value.trim() || 'Not provided') : 'No website';
+
+            if (!name || !phone || !business) {
+                alert('Please fill in your name, phone, and business name first.');
+                return;
+            }
+
+            const serviceMap = {
+                analyst: 'Website Analyst',
+                audit: 'Website Audit',
+                demo: 'Complimentary Website Demo'
+            };
+            const serviceLabel = serviceMap[selectedService] || selectedService || 'General Inquiry';
+
+            const msg = `WebSwan Service Request%0AService: ${serviceLabel}%0AName: ${name}%0APhone: ${phone}%0ABusiness: ${business}%0AWebsite: ${website}`;
+            
+            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = `sms:4158770687?body=${msg}`;
+            } else {
+                // For desktop, copy to clipboard
+                navigator.clipboard?.writeText(decodeURIComponent(msg.replace(/%0A/g, '\n'))).then(() => {
+                    alert('Message copied to clipboard! Please paste it into your SMS app and send to (415) 877-0687');
+                });
+            }
+        }
+
+        // ===== PWA PROMO TOGGLES =====
+        function togglePwaPromo(type) {
+            pwaPromoState[type] = !pwaPromoState[type];
+            const on = pwaPromoState[type];
+            const key = type === 'standalone' ? 'Standalone' : 'PremiumPackage';
+            const toggle = document.getElementById('togglePromo'+key);
+            const knob   = document.getElementById('knobPromo'+key);
+            const label  = document.getElementById('labelPromo'+key);
+            if(toggle) toggle.style.background = on ? 'linear-gradient(45deg,#28a745,#20c997)' : '#ccc';
+            if(knob)   knob.style.left = on ? '25px' : '3px';
+            if(label)  { label.innerText = on ? 'ON' : 'OFF'; label.style.color = on ? '#28a745' : '#999'; }
+            const row = document.getElementById('promo'+key+'Row');
+            if(row) row.style.display = on ? 'block' : 'none';
+        }
+
+        function applyPwaPromoStatesToModal() {
+            ['Standalone','PremiumPackage'].forEach(key => {
+                const type = key === 'Standalone' ? 'standalone' : 'premiumPackage';
+                const row = document.getElementById('promo'+key+'Row');
+                if(row) row.style.display = pwaPromoState[type] ? 'block' : 'none';
+            });
+        }
+
+        // ===== SPECIAL PRICE =====
+        function applyAdminSpecialPrice() {
+            let raw = document.getElementById('adminSpecialPriceInput').value.trim();
+            if (!raw || raw.length < 4 || raw[0] !== '0') {
+                alert('❌ Invalid format. Special price must start with "0" (e.g., 01000 for $1000)');
+                return;
+            }
+            let amount = parseInt(raw, 10);
+            if (isNaN(amount) || amount < 500) {
+                alert('❌ Invalid amount. Minimum special price is $500 (format: 0500)');
+                return;
+            }
+            if(specialPriceTimer) clearInterval(specialPriceTimer);
+            specialPriceActive = true; 
+            specialPriceAmount = amount; 
+            specialPriceTimeLeft = 300;
+            startAdminSpecialPriceTimer(); 
+            updateAdminSpecialUI();
+            alert(`✨ Special price of $${amount} activated for 5 minutes!`);
+            if(document.getElementById('estimateModal').style.display==='flex') loadEstimateCalculator();
+        }
+
+        function startAdminSpecialPriceTimer() { 
+            if(specialPriceTimer) clearInterval(specialPriceTimer); 
+            specialPriceTimer = setInterval(()=>{ 
+                if(specialPriceTimeLeft<=0){ 
+                    clearInterval(specialPriceTimer); 
+                    specialPriceActive=false; 
+                    updateAdminSpecialUI(); 
+                    if(document.getElementById('estimateModal').style.display==='flex') loadEstimateCalculator(); 
+                } else { 
+                    specialPriceTimeLeft--; 
+                    updateAdminSpecialUI(); 
+                } 
+            },1000); 
+        }
+
+        function acceptAdminSpecialPrice() { 
+            if(!specialPriceActive) { alert('No active special'); return; } 
+            if(specialPriceTimer) clearInterval(specialPriceTimer); 
+            specialPriceTimer=null; 
+            specialPriceActive=true; 
+            updateAdminSpecialUI(); 
+            alert('Special accepted — no time limit.'); 
+            if(document.getElementById('estimateModal').style.display==='flex') loadEstimateCalculator(); 
+        }
+
+        function clearAdminSpecialPrice() { 
+            if(specialPriceTimer) clearInterval(specialPriceTimer); 
+            specialPriceActive=false; 
+            specialPriceAmount=0; 
+            specialPriceTimeLeft=300; 
+            updateAdminSpecialUI(); 
+            if(document.getElementById('estimateModal').style.display==='flex') loadEstimateCalculator(); 
+            alert('Special cleared.'); 
+        }
+
+        function updateAdminSpecialUI() { 
+            let d=document.getElementById('adminTimerDisplay'); 
+            if(d) d.innerText=specialPriceActive?`${Math.floor(specialPriceTimeLeft/60)}:${(specialPriceTimeLeft%60).toString().padStart(2,'0')}`:'00:00'; 
+            let btn=document.getElementById('adminAcceptSpecialBtn'); 
+            if(btn) btn.disabled=!specialPriceActive; 
+            let badge=document.getElementById('adminSpecialActiveBadge'); 
+            if(badge) badge.style.display=specialPriceActive?'block':'none'; 
+            if(specialPriceActive){ 
+                let el=document.getElementById('adminSpecialAmount'); 
+                if(el) el.innerText=specialPriceAmount; 
+            } 
+        }
+
+        // ===== ESTIMATE CALCULATOR =====
+        function loadEstimateCalculator() {
+            document.getElementById('estimateModalBody').innerHTML = `
+            <div class="estimate-calculator">
+                <div class="pricing-card">
+                    <h3>💲 Pricing Menu</h3>
+                    <div class="pricing-grid">
+                        <div class="pricing-item"><p>Start-up Custom Web Design</p><span>$1,598 + $109/mo</span></div>
+                        <div class="pricing-item"><p>Premium Package</p><span>$3,998 + $109/mo</span></div>
+                        <div class="pricing-item"><p>Landing Page</p><span>$799 + $89/mo</span></div>
+                        <div class="pricing-item"><p>E-Commerce Website</p><span>$1,399 (first 10 items) + $75/item</span></div>
+                        <div class="pricing-item"><p>Standard Phone App Plus</p><span>$1,299 + $89/mo</span></div>
+                        <div class="pricing-item"><p>Standard Phone App</p><span>$899 + $69/mo</span></div>
+                        <div class="pricing-item"><p>Full Page Promotion</p><span>$559 + $197/mo</span></div>
+                        <div class="pricing-item"><p>Section Promotion</p><span>$499 + $109/mo</span></div>
+                        <div class="pricing-item"><p>Interactive Brand Hub</p><span>$699 + $39/mo</span></div>
+                        <div class="pricing-item"><p>Campaign Video (with website)</p><span>$799</span></div>
+                        <div class="pricing-item"><p>Campaign Video (standalone)</p><span>$899</span></div>
+                        <div class="pricing-item"><p>Custom Logo</p><span>$195</span></div>
+                        <div class="pricing-item"><p>Custom QR Code</p><span>$95</span></div>
+                        <div class="pricing-item"><p>Reputation Management</p><span>$109/mo</span></div>
+                        <div class="pricing-item"><p>⚖️ Compliance Banner (with website)</p><span>$399 setup + $49/mo</span></div>
+                        <div class="pricing-item"><p>⚖️ Standalone Compliance Banner</p><span>$599 + $49/mo</span></div>
+                        <div class="pricing-item"><p>SEO Content</p><span>$350/page</span></div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>🌐 Web Design Package <span style="font-size:0.8rem;color:#888;">(select one)</span></h3>
+                    <label><input type="radio" name="webPackage" value="none" checked onchange="calculateModalEstimate()"> No website package</label>
+                    <label><input type="radio" name="webPackage" value="startup" onchange="calculateModalEstimate()"> Start-up Custom Web Design — $1,598 + $109/mo</label>
+                    <label><input type="radio" name="webPackage" value="premium" onchange="calculateModalEstimate()"> Premium Package — $3,998 + $109/mo</label>
+                    <label><input type="radio" name="webPackage" value="landing" onchange="calculateModalEstimate()"> Landing Page — $799 + $89/mo</label>
+                    <label><input type="radio" name="webPackage" value="ecommerce" onchange="calculateModalEstimate()"> E-Commerce Website — $1,399 (first 10 items) + $75/additional item</label>
+                </div>
+                <div class="section">
+                    <h3>📱 Business Phone Application <span style="font-size:0.8rem;color:#888;">(select one)</span></h3>
+                    <label><input type="radio" name="pwaType" value="none" checked onchange="calculateModalEstimate()"> No phone app</label>
+                    <label><input type="radio" name="pwaType" value="premium" onchange="calculateModalEstimate()"> Standard Phone App Plus — $1,299 + $89/mo</label>
+                    <div id="promoStandaloneRow" style="display:none;"><label style="background:linear-gradient(135deg,#fff3cd,#fff9e6);border:2px solid #ffc107;"><input type="radio" name="pwaType" value="promoStandalone" onchange="calculateModalEstimate()"> 🔥 Promotion — $1,599 + $109/mo</label></div>
+                    <div id="promoPremiumPackageRow" style="display:none;"><label style="background:linear-gradient(135deg,#fff3cd,#fff9e6);border:2px solid #ffc107;"><input type="radio" name="pwaType" value="promoPremium" onchange="calculateModalEstimate()"> 🔥 Premium Package Promo — $2,499 + $109/mo <span style="color:#ff6b00;font-weight:700;">(Special from $3,500)</span></label></div>
+                    <label><input type="radio" name="pwaType" value="basic" onchange="calculateModalEstimate()"> Standard Phone App — $899 + $69/mo</label>
+                </div>
+                <div class="section">
+                    <h3>➕ Add-Ons</h3>
+                    <label><input type="checkbox" id="adFullPage" onchange="calculateModalEstimate()"> Full Page Promotion ($559 + $197/mo)</label>
+                    <label><input type="checkbox" id="adSection" onchange="calculateModalEstimate()"> Section Promotion ($499 + $109/mo)</label>
+                    <label><input type="checkbox" id="brandHub" onchange="calculateModalEstimate()"> Interactive Brand Hub ($699 + $39/mo)</label>
+                    <label><input type="checkbox" id="campaignVideoWithSite" onchange="calculateModalEstimate()"> Campaign Video (with website) — $799</label>
+                    <label><input type="checkbox" id="campaignVideoStandalone" onchange="calculateModalEstimate()"> Campaign Video (standalone) — $899</label>
+                    <label><input type="checkbox" id="translator" onchange="calculateModalEstimate()"> Language Translator ($150)</label>
+                    <label><input type="checkbox" id="logo" onchange="calculateModalEstimate()"> Custom Logo ($195)</label>
+                    <label><input type="checkbox" id="qrCode" onchange="calculateModalEstimate()"> Custom QR Code ($95)</label>
+                    <label><input type="checkbox" id="reputation" onchange="calculateModalEstimate()"> Reputation Management ($109/mo)</label>
+                    <div style="margin-top:12px;">
+                        <label style="background:none;padding:0;">Additional Links: <select id="linksCount" onchange="calculateModalEstimate()" style="margin-left:8px;padding:6px;border:2px solid #ddd;border-radius:6px;"><option value="0">0</option><option value="1">1 — $300</option><option value="2">2 — $600</option><option value="3">3 — $900</option></select></label>
+                        <label style="background:none;padding:0;margin-top:8px;">SEO Pages: <select id="seoCount" onchange="calculateModalEstimate()" style="margin-left:8px;padding:6px;border:2px solid #ddd;border-radius:6px;"><option value="0">0</option><option value="1">1 — $350</option><option value="2">2 — $700</option><option value="3">3 — $1,050</option></select></label>
+                    </div>
+                </div>
+                <div class="compliance-box">
+                    <h4>⚖️ Website Compliance Banner — Included by Default</h4>
+                    <p>All new websites built in 2026 must include a compliance banner to meet state privacy laws and avoid legal penalties. The compliance banner is <strong>included in your package</strong> at $399 setup + $49/month.</p>
+                    <p style="font-size:0.82rem;color:#1565c0;">✅ Setup: <strong>$399</strong> | Monthly: <strong>+$49/mo</strong> added to your total</p>
+                    <div class="compliance-optout-row">
+                        <input type="checkbox" id="complianceOptOut" onchange="toggleComplianceOptOut()">
+                        <label for="complianceOptOut">I wish to <strong>OPT OUT</strong> of the website compliance banner. I understand that The WebSwan is not responsible for any legal action, fine, or penalty taken against my business as a result of this decision.</label>
+                    </div>
+                    <div class="initials-box" id="initialsBox">
+                        <label>✍️ Enter your initials to confirm opt-out:</label>
+                        <input type="text" id="complianceInitials" maxlength="5" placeholder="e.g. T.D." oninput="calculateModalEstimate()">
+                        <p class="initials-disclaimer">"By entering my initials above, I confirm that I have read, understood, and accept full legal responsibility for opting out of the compliance banner. I release The WebSwan from any and all liability related to this decision."</p>
+                    </div>
+                </div>
+                <div class="result-box" id="resultBox">Setup Fee: $<span id="modalEstimate">0</span></div>
+                <div class="monthly-payment-box" id="monthlyPaymentBox">Monthly Total: $<span id="modalMonthly">0</span>/month</div>
+                <div class="estimate-action-buttons" id="estimateActionButtons">
+                    <button class="estimate-action-btn" onclick="sendEstimateSMS()"><i class="fas fa-comment-alt"></i> Send via SMS</button>
+                </div>
+            </div>`;
+            applyPwaPromoStatesToModal();
+            calculateModalEstimate();
+        }
+
+        function toggleComplianceOptOut() {
+            const optOut = document.getElementById('complianceOptOut').checked;
+            document.getElementById('initialsBox').style.display = optOut ? 'block' : 'none';
+            calculateModalEstimate();
+        }
+
+        function calculateModalEstimate() {
+            let total = 0, monthly = 0;
+            const web = document.querySelector('input[name="webPackage"]:checked')?.value || 'none';
+            if(web === 'startup') { total += 1598; monthly += 109; }
+            else if(web === 'premium') { total += 3998; monthly += 109; }
+            else if(web === 'landing') { total += 799; monthly += 89; }
+            else if(web === 'ecommerce') { total += 1399; monthly += 109; }
+            const pwa = document.querySelector('input[name="pwaType"]:checked')?.value || 'none';
+            if(pwa === 'premium') { total += 1299; monthly += 89; }
+            else if(pwa === 'promoStandalone') { total += 1599; monthly += 109; }
+            else if(pwa === 'promoPremium') { total += 2499; monthly += 109; }
+            else if(pwa === 'basic') { total += 899; monthly += 69; }
+            if(document.getElementById('adFullPage')?.checked) { total += 559; monthly += 197; }
+            if(document.getElementById('adSection')?.checked) { total += 499; monthly += 109; }
+            if(document.getElementById('brandHub')?.checked) { total += 699; monthly += 39; }
+            if(document.getElementById('campaignVideoWithSite')?.checked) total += 799;
+            if(document.getElementById('campaignVideoStandalone')?.checked) total += 899;
+            if(document.getElementById('translator')?.checked) total += 150;
+            if(document.getElementById('logo')?.checked) total += 195;
+            if(document.getElementById('qrCode')?.checked) total += 95;
+            if(document.getElementById('reputation')?.checked) { monthly += 109; }
+            const links = parseInt(document.getElementById('linksCount')?.value) || 0;
+            total += links * 300;
+            const seo = parseInt(document.getElementById('seoCount')?.value) || 0;
+            total += seo * 350;
+            const optOut = document.getElementById('complianceOptOut')?.checked;
+            const initials = document.getElementById('complianceInitials')?.value.trim();
+            const complianceConfirmed = optOut && initials.length >= 2;
+            if(!complianceConfirmed) { total += 399; monthly += 49; }
+            if(specialPriceActive && specialPriceAmount > 0) { total = specialPriceAmount; monthly = 109; }
+            document.getElementById('modalEstimate').innerText = total.toLocaleString();
+            if(monthly > 0) {
+                document.getElementById('modalMonthly').innerText = monthly.toLocaleString();
+                document.getElementById('monthlyPaymentBox').style.display = 'block';
+            } else {
+                document.getElementById('monthlyPaymentBox').style.display = 'none';
+            }
+            document.getElementById('estimateActionButtons').style.display = 'flex';
+            const rb = document.getElementById('resultBox');
+            rb.classList.add('pop');
+            setTimeout(()=>rb.classList.remove('pop'), 300);
+        }
+
+        function sendEstimateSMS() {
+            const estimate = document.getElementById('modalEstimate')?.innerText || '0';
+            const monthly  = document.getElementById('modalMonthly')?.innerText || '0';
+            const msg = `WebSwan Estimate%0ASetup Fee: $${estimate}%0AMonthly: $${monthly}/mo%0APlease confirm.`;
+            if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) window.location.href = `sms:4158770687?body=${msg}`;
+            else { navigator.clipboard?.writeText(decodeURIComponent(msg.replace(/%0A/g,'\n'))); alert('Estimate copied! Paste into your messaging app.'); }
+        }
+
+        function scrollToServiceAndOpenModal() {
+            loadEstimateCalculator();
+            document.getElementById('estimateModal').style.display = 'flex';
+        }
+
+        // Modal close
+        document.getElementById('closeEstimateModal')?.addEventListener('click',()=>document.getElementById('estimateModal').style.display='none');
+        window.addEventListener('click',(e)=>{ 
+            if(e.target===document.getElementById('estimateModal')) document.getElementById('estimateModal').style.display='none';
         });
-      }
-    });
 
-    // --- INSTALL BUTTON ---
-    let deferredPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'flex';
-    });
+        // Navigation
+        document.getElementById('navToAppointment')?.addEventListener('click',()=>{ if(window.innerWidth<=900) document.getElementById('formWrapper').style.transform='translateX(0)'; });
+        document.getElementById('navToQuestion')?.addEventListener('click',()=>{ if(window.innerWidth<=900) document.getElementById('formWrapper').style.transform='translateX(-50%)'; });
 
-    installBtn.addEventListener('click', async function() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const result = await deferredPrompt.userChoice;
-        if (result.outcome === 'accepted') {
-          showToast('🎉 App installed successfully!', '');
-        } else {
-          showToast('⏭️ Installation dismissed.', '');
+        // Contact form (right panel)
+        document.getElementById('contactForm')?.addEventListener('submit',(e)=>{ e.preventDefault(); alert('Inquiry sent!'); });
+
+        function toggleOtherServiceQuestion(val) { document.getElementById('otherQuestionContainer').style.display = val==='other'?'block':'none'; }
+        function copyPageLink() { navigator.clipboard?.writeText(window.location.href).then(()=>alert('Link copied!')); }
+        function copyLinkWithFallback(link, btn) { navigator.clipboard?.writeText(link).then(()=>{ btn.innerHTML='<i class="fas fa-check"></i>'; setTimeout(()=>btn.innerHTML='<i class="fas fa-copy"></i>',2000); }); }
+        function searchStateCompliance() {
+            const val = document.getElementById('stateInput')?.value.trim();
+            if(!val) return;
+            const url = `https://www.google.com/search?q=state+of+${encodeURIComponent(val)}+website+compliance+penalty`;
+            document.getElementById('selectedStateName').innerText = val + ' Compliance';
+            document.getElementById('stateLinkDisplay').innerText = url;
+            document.getElementById('stateLinkAnchor').href = url;
+            document.getElementById('stateResult').classList.add('show');
         }
-        deferredPrompt = null;
-      } else {
-        showToast('📲 Open this page in Chrome and tap "Add to Home Screen"', '');
-      }
-    });
+        function copyStateLink() { const url = document.getElementById('stateLinkDisplay')?.innerText; if(url) navigator.clipboard?.writeText(url).then(()=>alert('Link copied!')); }
+        document.getElementById('headerInstallBtn')?.addEventListener('click',()=>alert('Click Share then "Add to Home Screen"'));
 
-    window.addEventListener('appinstalled', () => {
-      installBtn.style.display = 'none';
-      showToast('✅ The WebSwan is now installed!', '');
-    });
-
-    // --- Form Submit (WhatsApp) ---
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      if (!fullName.value.trim() || !phoneNumber.value.trim() || !businessName.value.trim() || !serviceInterest.value || !hasWebsite.value) {
-        showToast('⚠️ Please fill in all required fields.', 'error');
-        return;
-      }
-
-      const name = fullName.value.trim();
-      const phone = phoneNumber.value.trim();
-      const business = businessName.value.trim();
-      const service = serviceInterest.value;
-      const website = hasWebsite.value === 'yes' ? websiteUrl.value.trim() || 'Not provided' : 'No website';
-      const comment = commentBox.value.trim() || 'No comment';
-      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value || 'Not specified';
-
-      const message = 
-`📋 *New Lead from WebSwan App*
-
-👤 Name: ${name}
-📞 Phone: ${phone}
-🏢 Business: ${business}
-🎯 Service Interested: ${service}
-🌐 Website: ${website}
-💬 Comment: ${comment}
-📨 Contact via: ${contactMethod}
-
-🚀 The WebSwan - Capture More Customers!`;
-
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappNumber = '14158770687';
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-      const win = window.open(whatsappURL, '_blank');
-      if (!win || win.closed) {
-        window.location.href = whatsappURL;
-      }
-      showToast('✅ Opening WhatsApp... Please send the message!', '');
-    });
-
-    // --- Toast helper ---
-    function showToast(message, type = '') {
-      toast.textContent = message;
-      toast.className = 'toast show' + (type ? ' ' + type : '');
-      clearTimeout(toast._timeout);
-      toast._timeout = setTimeout(() => {
-        toast.className = 'toast';
-      }, 5000);
-    }
-
-    // --- Hide install btn if already installed ---
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      installBtn.style.display = 'none';
-    }
-  })();
-</script>
-
+        // Admin
+        function hideAdminPanel() { document.getElementById('adminPanel').classList.remove('show'); }
+        function openAdminPanel() { document.getElementById('adminPanel').classList.add('show'); }
+        function switchAdminTab(event, tab) {
+            document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+            if(event?.target) event.target.classList.add('active');
+            document.getElementById('adminSpecials').style.display = tab==='specials'?'block':'none';
+            document.getElementById('adminTimer').style.display = tab==='timer'?'block':'none';
+            document.getElementById('adminSettings').style.display = tab==='settings'?'block':'none';
+        }
+        function handleAdminClick() {
+            adminClickCount++;
+            if(adminClickCount >= 7) {
+                adminClickCount = 0;
+                const p = prompt("Enter admin password:");
+                if(p === null) return;
+                if(p === ADMIN_PASS) openAdminPanel();
+                else alert("Wrong password");
+            }
+            if(window.adminClickResetTimer) clearTimeout(window.adminClickResetTimer);
+            window.adminClickResetTimer = setTimeout(()=>{ adminClickCount=0; }, 2000);
+        }
+        document.getElementById('adminLoginBtn').onclick = handleAdminClick;
+        document.getElementById('changePasswordForm')?.addEventListener('submit',(e)=>{ e.preventDefault(); alert('Password update demo'); });
+    </script>
 </body>
 </html>
