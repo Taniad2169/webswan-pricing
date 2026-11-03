@@ -187,7 +187,25 @@
         .submit-btn.whatsapp-submit { background: linear-gradient(45deg, #25d366, #128c7e); color: white; }
         .submit-btn.sms-submit { background: linear-gradient(45deg, #14395d, #38b9c9); color: white; }
         .submit-btn i { font-size: 1.3rem; }
-    </style>
+            .ws-brands { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin:18px 0; }
+        .ws-brand { display:flex; gap:10px; align-items:center; text-decoration:none; color:#0a1e2f; background:#fff; border:2px solid #38b9c9; border-radius:14px; padding:12px 14px; transition:transform .2s, box-shadow .2s; }
+        .ws-brand:hover, .ws-brand:focus-visible { transform:translateY(-2px); box-shadow:0 6px 18px rgba(56,185,201,.35); outline:none; }
+        .ws-brand-ic { font-size:1.6rem; }
+        .ws-brand b { display:block; font-size:.95rem; } .ws-brand small { color:#4a6378; font-size:.75rem; }
+        .wsds-pricing { background:linear-gradient(145deg,#f0f7ff,#e3f2fd); border:2px solid #1182f0; border-radius:18px; padding:20px; margin:20px 0; }
+        .wsds-pricing h2 { color:#0d47a1; font-size:1.2rem; margin-bottom:6px; }
+        .wsds-sub, .wsds-note { color:#35506a; font-size:.88rem; line-height:1.5; }
+        .wsds-note { margin-top:12px; } .wsds-note a { color:#0d47a1; font-weight:700; }
+        .wsds-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:14px; }
+        .wsds-card { position:relative; background:#fff; border:2px solid #6ca1d4; border-radius:16px; padding:18px; display:flex; flex-direction:column; }
+        .wsds-best { border-color:#1182f0; box-shadow:0 8px 24px rgba(17,130,240,.18); }
+        .wsds-tag { position:absolute; top:-12px; right:14px; background:#1182f0; color:#fff; font-size:.72rem; font-weight:800; padding:3px 10px; border-radius:99px; }
+        .wsds-name { font-weight:800; color:#0a1e2f; }
+        .wsds-price { font-size:2rem; font-weight:900; color:#1182f0; margin:4px 0 8px; }
+        .wsds-card ul { margin:0 0 14px 18px; padding:0; font-size:.86rem; color:#21384d; line-height:1.55; flex:1; }
+        .wsds-btn { display:block; text-align:center; background:linear-gradient(135deg,#1182f0,#339cde); color:#fff; font-weight:800; text-decoration:none; padding:12px; border-radius:999px; }
+        .wsds-btn:hover, .wsds-btn:focus-visible { filter:brightness(1.08); outline:3px solid #93e5fa; }
+</style>
 </head>
 <body>
 
@@ -282,6 +300,47 @@
                             </span>
                         </button>
                     </div>
+
+                    <!-- WebSwan family: where each service lives -->
+                    <div class="ws-brands" aria-label="Visit the WebSwan family">
+                        <a class="ws-brand" href="https://www.thewebswan.com" target="_blank" rel="noopener"><span class="ws-brand-ic">🌐</span><span><b>Websites &amp; Phone Apps</b><small>The WebSwan · thewebswan.com</small></span></a>
+                        <a class="ws-brand" href="https://www.webswanmedianetwork.com" target="_blank" rel="noopener"><span class="ws-brand-ic">📣</span><span><b>Advertising</b><small>WebSwan Media Network · webswanmedianetwork.com</small></span></a>
+                        <a class="ws-brand" href="https://www.webswandigitalsolutions.com" target="_blank" rel="noopener"><span class="ws-brand-ic">⚖️</span><span><b>Compliance &amp; Web Analysis</b><small>WebSwan Digital Solutions · webswandigitalsolutions.com</small></span></a>
+                    </div>
+
+                    <!-- WebSwan Digital Solutions pricing -->
+                    <section class="wsds-pricing" id="digitalSolutionsPricing" aria-labelledby="wsdsTitle">
+                        <h2 id="wsdsTitle"><i class="fas fa-shield-halved"></i> WebSwan Digital Solutions: Website Audit Pricing</h2>
+                        <p class="wsds-sub">A thorough, hands-on audit of your website, explained in plain language, with a written report within 48 hours and a 15-minute review call with Tania.</p>
+                        <div class="wsds-grid">
+                            <div class="wsds-card">
+                                <div class="wsds-name">Website Compliance Audit</div>
+                                <div class="wsds-price">$399</div>
+                                <ul>
+                                    <li>ADA accessibility (WCAG 2.1 AA), tested by hand and with tools</li>
+                                    <li>Cookie consent and privacy policy</li>
+                                    <li>HIPAA patient forms and tracking pixels (medical)</li>
+                                    <li>Attorney advertising and bar-rule disclaimers (law firms)</li>
+                                    <li>Your state's requirements</li>
+                                </ul>
+                                <a class="wsds-btn" href="https://buy.stripe.com/eVqbJ3ent8WQ9Bs4tG3Nm07" target="_blank" rel="noopener"><i class="fas fa-lock"></i> Start my audit, $399</a>
+                            </div>
+                            <div class="wsds-card wsds-best">
+                                <div class="wsds-tag">Most complete</div>
+                                <div class="wsds-name">Compliance Audit + Web Analysis</div>
+                                <div class="wsds-price">$1,099</div>
+                                <ul>
+                                    <li>Everything in the Compliance Audit</li>
+                                    <li>Speed, mobile and broken links</li>
+                                    <li>SEO, topical SEO, Google and AI search visibility (AEO / GEO)</li>
+                                    <li>Matching phone, email and address on every page</li>
+                                    <li>Headings, image descriptions, duplicates and typos</li>
+                                </ul>
+                                <a class="wsds-btn" href="https://buy.stripe.com/14A8wRa7dehafZQf8k3Nm09" target="_blank" rel="noopener"><i class="fas fa-lock"></i> Start my full audit, $1,099</a>
+                            </div>
+                        </div>
+                        <p class="wsds-note">Secure, encrypted payment by Stripe. Questions first? Call <a href="tel:+13162486839">(316) 248-6839</a> or use "Ask Questions" above. Technical review, not legal advice.</p>
+                    </section>
 
                     <div class="waiver-notice"><i class="fas fa-check-circle"></i> If you have a website with us, the set-up fee for advertising is waived! You only pay the monthly subscription.</div>
 
@@ -405,6 +464,12 @@
                 demo:    '🎁 Complimentary Website Demo Request'
             };
             document.getElementById('requestFormTitle').innerText = titles[type] || 'Service Request';
+            if (type === 'audit' || type === 'analyst') {
+                document.querySelectorAll('.service-option-btn').forEach(b => b.classList.remove('selected-service'));
+                if (btn) btn.classList.add('selected-service');
+                const pr = document.getElementById('digitalSolutionsPricing');
+                if (pr) { pr.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+            }
             document.querySelectorAll('.service-option-btn').forEach(b => b.classList.remove('selected-service'));
             if (btn) btn.classList.add('selected-service');
             setTimeout(() => {
@@ -606,7 +671,7 @@ Sent via WebSwan Services App`
                         <div class="pricing-item"><p>Custom QR Code</p><span>$95</span></div>
                         <div class="pricing-item"><p>Reputation Management</p><span>$109/mo</span></div>
                         <div class="pricing-item"><p>⚖️ Compliance Banner (with website)</p><span>$399 setup + $49/mo</span></div>
-                        <div class="pricing-item"><p>⚖️ Standalone Compliance Banner</p><span>$599 + $49/mo</span></div>
+                        <div class="pricing-item"><p>⚖️ Standalone Compliance Banner</p><span>$499 + $49/mo</span></div>
                         <div class="pricing-item"><p>SEO Content</p><span>$350/page</span></div>
                     </div>
                 </div>
