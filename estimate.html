@@ -56,7 +56,7 @@
         <label><input type="checkbox" id="mAI"> 🤖 AI-powered (AI chat assistant on your site) <small>+$300</small></label>
         <label><input type="checkbox" id="mOpt"> 🔎 Optimization (schema, AEO/GEO, topical SEO, SEO) <small>+$299</small></label>
       </div>
-      <label class="opt"><input type="radio" name="web" value="startup"><span class="t">Start-up Custom Web Design</span><span class="p">$1,598 + $109/mo</span></label>
+      <label class="opt"><input type="radio" name="web" value="startup"><span class="t">Standard Custom Web Design</span><span class="p">$1,997 + $109/mo</span></label>
       <label class="opt"><input type="radio" name="web" value="premium"><span class="t">Premium Package</span><span class="p">$3,998 + $109/mo</span></label>
       <label class="opt"><input type="radio" name="web" value="landing"><span class="t">Landing Page</span><span class="p">$799 + $89/mo</span></label>
       <label class="opt"><input type="radio" name="web" value="ecommerce"><span class="t">E-Commerce Website (first 10 items)</span><span class="p">$1,399 + $109/mo</span></label>
@@ -134,7 +134,7 @@
   const val = n => (form.querySelector(`input[name="${n}"]:checked`) || {}).value || 'none';
   const chk = id => $(id).checked;
   const money = n => '$' + Number(n).toLocaleString('en-US');
-  const WEB = { startup: ['Start-up Custom Web Design', 1598, 109], premium: ['Premium Package', 3998, 109], landing: ['Landing Page', 799, 89], ecommerce: ['E-Commerce Website', 1399, 109] };
+  const WEB = { startup: ['Standard Custom Web Design', 1997, 109], premium: ['Premium Package', 3998, 109], landing: ['Landing Page', 799, 89], ecommerce: ['E-Commerce Website', 1399, 109] };
   const APP = { basic: ['Standard Phone App', 899, 69], plus: ['Standard Phone App Plus', 1299, 89] };
   const AUD = { audit: ['Website Compliance Audit', 399], analysis: ['Web Analysis', 799], both: ['Compliance Audit + Web Analysis', 1099] };
   function calc() {
