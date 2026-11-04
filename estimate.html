@@ -76,10 +76,10 @@
       <label class="opt"><input type="radio" name="audit" value="both"><span class="t">Compliance Audit + Web Analysis</span><span class="p">$1,099</span></label>
       <p class="note" style="margin-top:12px"><b>ADA accessibility + cookie consent banners</b></p>
       <label class="opt" id="bnNone"><input type="radio" name="banner" value="none" checked><span class="t">No banners</span></label>
-      <label class="opt" id="bnSite"><input type="radio" name="banner" value="site"><span class="t">With a new WebSwan website (your website plan becomes $149/mo: hosting, maintenance, security and banners)</span><span class="p">$299</span></label>
+      <label class="opt" id="bnSite"><input type="radio" name="banner" value="site"><span class="t">With a new WebSwan website ($49/mo; your $109 website plan becomes $158/mo: hosting, maintenance, security and banners)</span><span class="p">$299 + $49/mo</span></label>
       <label class="opt" id="bnTested"><input type="radio" name="banner" value="tested"><span class="t">For your current website (Wix, GoDaddy, WordPress…) after a WebSwan audit</span><span class="p">$399 + $59/mo</span></label>
       <label class="opt" id="bnStand"><input type="radio" name="banner" value="standalone"><span class="t">Standalone, for your current website</span><span class="p">$499 + $59/mo</span></label>
-      <div class="disc" style="margin-top:10px"><b>Your savings:</b> audit with us first and the banners drop from $499 to <b>$399</b>. Build your website with us and they're only <b>$299</b>.</div>
+      <div class="disc" style="margin-top:10px"><b>Your savings:</b> audit with us first and the banners drop from $499 to <b>$399</b>. Build your website with us and they're only <b>$299 + $49/mo</b>.</div>
     </section>
 
     <section class="sec">
@@ -148,7 +148,7 @@
     let banner = val('banner');
     if (hasSite && (banner === 'tested' || banner === 'standalone')) { form.querySelector('input[name="banner"][value="site"]').checked = true; banner = 'site'; }
     if (!hasSite && banner === 'site') { form.querySelector('input[name="banner"][value="none"]').checked = true; banner = 'none'; }
-    if (banner === 'site') add('ADA + Cookie Banners (website plan becomes $149/mo)', 299, 40);
+    if (banner === 'site') add('ADA + Cookie Banners (with your WebSwan website)', 299, 49);
     if (banner === 'tested') add('ADA + Cookie Banners (after WebSwan audit)', 399, 59);
     if (banner === 'standalone') add('ADA + Cookie Banners (standalone)', 499, 59);
     const ad = val('ad');
