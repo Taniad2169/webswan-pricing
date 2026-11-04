@@ -83,13 +83,11 @@
     </section>
 
     <section class="sec">
-      <h2>📣 Advertising</h2><span class="by">WebSwan Media Network · webswanmedianetwork.com</span>
+      <h2>📣 Doctor &amp; Attorney Advertising</h2><span class="by">WebSwan Media Network · webswanmedianetwork.com</span>
       <label class="opt"><input type="radio" name="ad" value="none" checked><span class="t">No directory membership</span></label>
       <label class="opt"><input type="radio" name="ad" value="found"><span class="t">Found membership (+ $289/yr network fee)</span><span class="p">$49/mo</span></label>
       <label class="opt"><input type="radio" name="ad" value="leads"><span class="t">Found + Leads membership (+ $289/yr network fee)</span><span class="p">$69/mo</span></label>
-      <p class="note">Setup and onboarding $400, <b>waived</b> when The WebSwan builds your website, landing page or SBPA.</p>
-      <label class="opt"><input type="checkbox" id="adFull"><span class="t">Full Page Promotion</span><span class="p">$559 + $197/mo</span></label>
-      <label class="opt"><input type="checkbox" id="adSection"><span class="t">Section Promotion</span><span class="p">$499 + $109/mo</span></label>
+      <p class="note">Setup and onboarding $400, <b>automatically waived</b> when you choose a website, landing page or phone app above.</p>
       <p class="note" style="margin-top:12px"><b>Rachel, 24/7 AI receptionist</b> (one-week free trial)</p>
       <label class="opt"><input type="radio" name="rachel" value="none" checked><span class="t">No AI receptionist</span></label>
       <label class="opt"><input type="radio" name="rachel" value="partial"><span class="t">Partial service</span><span class="p">$200 + $299/mo</span></label>
@@ -155,8 +153,6 @@
     if (banner === 'standalone') add('ADA + Cookie Banners (standalone)', 499, 59);
     const ad = val('ad');
     if (ad !== 'none') { add(ad === 'leads' ? 'Found + Leads membership' : 'Found membership', 0, ad === 'leads' ? 69 : 49, 289); if (!(hasSite || app !== 'none')) add('Media Network setup', 400); else items.push('Media Network setup: waived'); }
-    if (chk('adFull')) add('Full Page Promotion', 559, 197);
-    if (chk('adSection')) add('Section Promotion', 499, 109);
     const r = val('rachel'); if (r !== 'none') add('Rachel AI Receptionist (' + r + ' service)', 200, r === 'full' ? 499 : 299);
     if (chk('hub')) add('Interactive Brand Hub', 699, 39);
     if (chk('video')) add('Campaign Video', hasSite ? 799 : 899);
@@ -177,14 +173,14 @@
     const p = new URLSearchParams();
     ['web', 'app', 'audit', 'banner', 'ad', 'rachel'].forEach(n => { if (val(n) !== 'none') p.set(n, val(n)); });
     ['items', 'links', 'seo'].forEach(id => { if (+$(id).value) p.set(id, $(id).value); });
-    ['adFull', 'adSection', 'hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (chk(id)) p.set(id, '1'); });
+    ['hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (chk(id)) p.set(id, '1'); });
     return p.toString();
   }
   function load() {
     const p = new URLSearchParams(location.search);
     ['web', 'app', 'audit', 'ad', 'rachel', 'banner'].forEach(n => { const v = p.get(n); const el = v && form.querySelector(`input[name="${n}"][value="${CSS.escape(v)}"]`); if (el) el.checked = true; });
     ['items', 'links', 'seo'].forEach(id => { const v = p.get(id); if (v && [...$(id).options].some(o => o.value === v)) $(id).value = v; });
-    ['adFull', 'adSection', 'hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (p.get(id) === '1') $(id).checked = true; });
+    ['hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (p.get(id) === '1') $(id).checked = true; });
   }
   function toast(m) { const t = $('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', 2600); }
   form.addEventListener('change', calc);
