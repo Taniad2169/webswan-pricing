@@ -50,6 +50,11 @@
     <section class="sec">
       <h2>🌐 Website</h2><span class="by">The WebSwan · thewebswan.com</span>
       <label class="opt"><input type="radio" name="web" value="none" checked><span class="t">No website</span></label>
+      <label class="opt" style="border-color:#1182f0;background:#f0f7ff"><input type="radio" name="web" value="managed"><span class="t"><b>⭐ Managed Website Program</b><br><small>Custom website by a real developer, ADA + cookie banners included (special), hosting, security, backups, monthly report and up to 60 minutes of edits a month. 12-month agreement; after 12 months it drops to $299/mo.</small></span><span class="p">$899 + $499/mo</span></label>
+      <div id="mgAdd" class="row2" hidden>
+        <label><input type="checkbox" id="mAI"> 🤖 AI-powered (AI chat assistant on your site) <small>+$300</small></label>
+        <label><input type="checkbox" id="mOpt"> 🔎 Optimization (schema, AEO/GEO, topical SEO, SEO) <small>+$299</small></label>
+      </div>
       <label class="opt"><input type="radio" name="web" value="startup"><span class="t">Start-up Custom Web Design</span><span class="p">$1,598 + $109/mo</span></label>
       <label class="opt"><input type="radio" name="web" value="premium"><span class="t">Premium Package</span><span class="p">$3,998 + $109/mo</span></label>
       <label class="opt"><input type="radio" name="web" value="landing"><span class="t">Landing Page</span><span class="p">$799 + $89/mo</span></label>
@@ -135,6 +140,15 @@
     let setup = 0, month = 0, year = 0; const items = [];
     const add = (name, s, m, y) => { setup += s || 0; month += m || 0; year += y || 0; items.push(name + ': ' + [s ? money(s) : '', m ? money(m) + '/mo' : '', y ? money(y) + '/yr' : ''].filter(Boolean).join(' + ')); };
     const web = val('web'), app = val('app');
+    const mg = web === 'managed';
+    $('mgAdd').hidden = !mg;
+    if (mg) {
+      add('Managed Website Program (ADA + cookie banners included)', 899, 499);
+      if (chk('mAI')) add('AI-powered upgrade', 300);
+      if (chk('mOpt')) add('Optimization upgrade (schema, AEO/GEO, topical SEO, SEO)', 299);
+      items.push('12-month agreement · up to 60 min of edits a month (extra $100/hr)');
+      items.push('After 12 months: $299/mo hosting and maintenance');
+    }
     if (WEB[web]) add(...WEB[web]);
     if (web === 'ecommerce' && +$('items').value) add($('items').value + ' extra items', 75 * $('items').value);
     if (+$('links').value) add($('links').value + ' additional link(s)', 300 * $('links').value);
@@ -145,9 +159,10 @@
     const hasSite = web !== 'none';
     $('bnSite').classList.toggle('dim', !hasSite); $('bnSite').querySelector('input').disabled = !hasSite;
     ['bnTested', 'bnStand'].forEach(id => { $(id).classList.toggle('dim', hasSite); $(id).querySelector('input').disabled = hasSite; });
+    if (mg) { ['bnSite', 'bnTested', 'bnStand'].forEach(id => { $(id).classList.add('dim'); $(id).querySelector('input').disabled = true; }); form.querySelector('input[name="banner"][value="none"]').checked = true; }
     let banner = val('banner');
     if (hasSite && (banner === 'tested' || banner === 'standalone')) { form.querySelector('input[name="banner"][value="site"]').checked = true; banner = 'site'; }
-    if (!hasSite && banner === 'site') { form.querySelector('input[name="banner"][value="none"]').checked = true; banner = 'none'; }
+    if ((!hasSite || mg) && banner === 'site') { form.querySelector('input[name="banner"][value="none"]').checked = true; banner = 'none'; }
     if (banner === 'site') add('ADA + Cookie Banners (with your WebSwan website)', 299, 49);
     if (banner === 'tested') add('ADA + Cookie Banners (after WebSwan audit)', 399, 59);
     if (banner === 'standalone') add('ADA + Cookie Banners (standalone)', 499, 59);
@@ -173,14 +188,14 @@
     const p = new URLSearchParams();
     ['web', 'app', 'audit', 'banner', 'ad', 'rachel'].forEach(n => { if (val(n) !== 'none') p.set(n, val(n)); });
     ['items', 'links', 'seo'].forEach(id => { if (+$(id).value) p.set(id, $(id).value); });
-    ['hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (chk(id)) p.set(id, '1'); });
+    ['hub', 'video', 'translator', 'logo', 'qr', 'rep', 'mAI', 'mOpt'].forEach(id => { if (chk(id)) p.set(id, '1'); });
     return p.toString();
   }
   function load() {
     const p = new URLSearchParams(location.search);
     ['web', 'app', 'audit', 'ad', 'rachel', 'banner'].forEach(n => { const v = p.get(n); const el = v && form.querySelector(`input[name="${n}"][value="${CSS.escape(v)}"]`); if (el) el.checked = true; });
     ['items', 'links', 'seo'].forEach(id => { const v = p.get(id); if (v && [...$(id).options].some(o => o.value === v)) $(id).value = v; });
-    ['hub', 'video', 'translator', 'logo', 'qr', 'rep'].forEach(id => { if (p.get(id) === '1') $(id).checked = true; });
+    ['hub', 'video', 'translator', 'logo', 'qr', 'rep', 'mAI', 'mOpt'].forEach(id => { if (p.get(id) === '1') $(id).checked = true; });
   }
   function toast(m) { const t = $('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', 2600); }
   form.addEventListener('change', calc);

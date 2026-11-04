@@ -192,6 +192,17 @@
         .ws-brand:hover, .ws-brand:focus-visible { transform:translateY(-2px); box-shadow:0 6px 18px rgba(56,185,201,.35); outline:none; }
         .ws-brand-ic { font-size:1.6rem; }
         .ws-brand b { display:block; font-size:.95rem; } .ws-brand small { color:#4a6378; font-size:.75rem; }
+        .wsmw { background:linear-gradient(145deg,#f0fbff,#e3f2fd); border:2px solid #339cde; border-radius:18px; padding:20px; margin:20px 0; }
+        .wsmw h2 { color:#0d47a1; font-size:1.2rem; margin-bottom:6px; }
+        .wsmw-price { font-size:1.9rem; font-weight:900; color:#1182f0; margin:6px 0 2px; line-height:1.15; }
+        .wsmw-price small { display:block; font-size:.95rem; color:#35506a; font-weight:700; }
+        .wsmw-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin-top:12px; }
+        .wsmw-box { background:#fff; border:2px solid #6ca1d4; border-radius:14px; padding:14px; font-size:.86rem; color:#21384d; line-height:1.55; }
+        .wsmw-box b.h { display:block; color:#0a1e2f; margin-bottom:4px; font-size:.95rem; }
+        .wsmw-box ul { margin:0 0 0 18px; padding:0; }
+        .wsmw-cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+        .wsmw-cta a, .wsmw-cta button { flex:1; min-width:200px; text-align:center; background:linear-gradient(135deg,#1182f0,#339cde); color:#fff; font-weight:800; text-decoration:none; padding:12px; border-radius:999px; border:0; cursor:pointer; font-size:.95rem; }
+        .wsmw-cta .alt { background:#fff; color:#0d47a1; border:2px solid #1182f0; }
         .wsds-pricing { background:linear-gradient(145deg,#f0f7ff,#e3f2fd); border:2px solid #1182f0; border-radius:18px; padding:20px; margin:20px 0; }
         .wsds-pricing h2 { color:#0d47a1; font-size:1.2rem; margin-bottom:6px; }
         .wsds-sub, .wsds-note { color:#35506a; font-size:.88rem; line-height:1.5; }
@@ -307,6 +318,39 @@
                         <a class="ws-brand" href="https://www.webswanmedianetwork.com" target="_blank" rel="noopener"><span class="ws-brand-ic">📣</span><span><b>Advertising</b><small>WebSwan Media Network · webswanmedianetwork.com</small></span></a>
                         <a class="ws-brand" href="https://www.webswandigitalsolutions.com" target="_blank" rel="noopener"><span class="ws-brand-ic">⚖️</span><span><b>Compliance &amp; Web Analysis</b><small>WebSwan Digital Solutions · webswandigitalsolutions.com</small></span></a>
                     </div>
+
+                    <!-- The WebSwan Managed Website Program -->
+                    <section class="wsmw" id="managedWebsite" aria-labelledby="wsmwTitle">
+                        <h2 id="wsmwTitle"><i class="fas fa-globe"></i> The WebSwan Managed Website Program</h2>
+                        <p class="wsds-sub">A custom website built by a real developer, not a drag-and-drop template, and taken care of for you every month. Made for doctors and attorneys.</p>
+                        <div class="wsmw-price">$899 to start + $499/month <small>for 12 months, then only $299/month for hosting and maintenance</small></div>
+                        <div class="wsmw-grid">
+                            <div class="wsmw-box"><b class="h">✅ Included (year one)</b><ul>
+                                <li>Your custom website, designed and built by The WebSwan</li>
+                                <li><b>Special:</b> ADA accessibility toolbar + cookie consent banner included</li>
+                                <li>Hosting, SSL, backups and security monitoring</li>
+                                <li>Monthly website check and monthly report</li>
+                                <li>Up to 60 minutes of edits every month</li>
+                            </ul></div>
+                            <div class="wsmw-box"><b class="h">⭐ Optional upgrades (paid at the start)</b><ul>
+                                <li><b>AI-powered, +$300:</b> an AI chat assistant on your website that answers visitors' questions</li>
+                                <li><b>Optimization, +$299:</b> schema markup, AEO and GEO (AI search), topical SEO and SEO</li>
+                            </ul></div>
+                            <div class="wsmw-box"><b class="h">✏️ What counts as an edit</b>
+                                Small changes to what's already on your site: office hours, phone number, text, photos, a price, a team bio. New pages, redesigns and new features are quoted separately. Extra edit time is $100 an hour. After year one, the $299 plan includes up to 30 minutes of edits a month and a quarterly report.
+                            </div>
+                            <div class="wsmw-box"><b class="h">📄 Good to know</b><ul>
+                                <li>12-month agreement</li>
+                                <li>You own your website content</li>
+                                <li>Need an AI receptionist or appointment setter for your phones? That's <b>SwanDesk AI</b>, sold separately. Ask us.</li>
+                            </ul></div>
+                        </div>
+                        <div class="wsmw-cta">
+                            <button type="button" onclick="scrollToServiceAndOpenModal()"><i class="fas fa-calculator"></i> Estimate my package</button>
+                            <a class="alt" href="estimate.html?web=managed" target="_blank" rel="noopener"><i class="fas fa-share-nodes"></i> Shareable estimate</a>
+                            <a class="alt" href="tel:+13162486839"><i class="fas fa-phone"></i> Call (316) 248-6839</a>
+                        </div>
+                    </section>
 
                     <!-- WebSwan Digital Solutions pricing -->
                     <section class="wsds-pricing" id="digitalSolutionsPricing" aria-labelledby="wsdsTitle">
@@ -656,6 +700,9 @@ Sent via WebSwan Services App`
                 <div class="pricing-card">
                     <h3>💲 Pricing Menu</h3>
                     <div class="pricing-grid">
+                        <div class="pricing-item"><p>⭐ Managed Website Program (ADA + cookie included)</p><span>$899 + $499/mo × 12, then $299/mo</span></div>
+                        <div class="pricing-item"><p>⭐ Managed: AI-powered upgrade</p><span>+$300</span></div>
+                        <div class="pricing-item"><p>⭐ Managed: Optimization upgrade</p><span>+$299</span></div>
                         <div class="pricing-item"><p>Start-up Custom Web Design</p><span>$1,598 + $109/mo</span></div>
                         <div class="pricing-item"><p>Premium Package</p><span>$3,998 + $109/mo</span></div>
                         <div class="pricing-item"><p>Landing Page</p><span>$799 + $89/mo</span></div>
@@ -686,6 +733,11 @@ Sent via WebSwan Services App`
                 <div class="section">
                     <h3>🌐 Web Design Package <span style="font-size:0.8rem;color:#888;">(select one)</span></h3>
                     <label><input type="radio" name="webPackage" value="none" checked onchange="calculateModalEstimate()"> No website package</label>
+                    <label style="border:2px solid #1182f0;background:#f0f7ff"><input type="radio" name="webPackage" value="managed" onchange="calculateModalEstimate()"> ⭐ Managed Website Program — $899 + $499/mo for 12 months, then $299/mo (ADA + cookie banners included, up to 60 min of edits a month)</label>
+                    <div id="managedAddons" style="display:none;margin:4px 0 8px 22px">
+                        <label><input type="checkbox" id="managedAI" onchange="calculateModalEstimate()"> 🤖 AI-powered (AI chat assistant on the site) +$300</label>
+                        <label><input type="checkbox" id="managedOpt" onchange="calculateModalEstimate()"> 🔎 Optimization (schema, AEO/GEO, topical SEO, SEO) +$299</label>
+                    </div>
                     <label><input type="radio" name="webPackage" value="startup" onchange="calculateModalEstimate()"> Start-up Custom Web Design — $1,598 + $109/mo</label>
                     <label><input type="radio" name="webPackage" value="premium" onchange="calculateModalEstimate()"> Premium Package — $3,998 + $109/mo</label>
                     <label><input type="radio" name="webPackage" value="landing" onchange="calculateModalEstimate()"> Landing Page — $799 + $89/mo</label>
@@ -772,6 +824,9 @@ Sent via WebSwan Services App`
         function calculateModalEstimate() {
             let total = 0, monthly = 0;
             const web = document.querySelector('input[name="webPackage"]:checked')?.value || 'none';
+            const managed = web === 'managed';
+            if(document.getElementById('managedAddons')) document.getElementById('managedAddons').style.display = managed ? 'block' : 'none';
+            if(managed) { total += 899; monthly += 499; if(document.getElementById('managedAI')?.checked) total += 300; if(document.getElementById('managedOpt')?.checked) total += 299; }
             if(web === 'startup') { total += 1598; monthly += 109; }
             else if(web === 'premium') { total += 3998; monthly += 109; }
             else if(web === 'landing') { total += 799; monthly += 89; }
@@ -796,8 +851,8 @@ Sent via WebSwan Services App`
             const initials = document.getElementById('complianceInitials')?.value.trim();
             const complianceConfirmed = optOut && initials.length >= 2;
             const hasSite = web !== 'none';
-            if(document.querySelector('.compliance-box')) document.querySelector('.compliance-box').style.display = hasSite ? '' : 'none';
-            if(hasSite && !complianceConfirmed) { total += 299; monthly += 49; }
+            if(document.querySelector('.compliance-box')) document.querySelector('.compliance-box').style.display = hasSite && !managed ? '' : 'none';
+            if(hasSite && !managed && !complianceConfirmed) { total += 299; monthly += 49; }
             const banner = document.querySelector('input[name="bannerOnly"]:checked')?.value || 'none';
             if(!hasSite && banner === 'tested') { total += 399; monthly += 59; }
             else if(!hasSite && banner === 'standalone') { total += 499; monthly += 59; }
