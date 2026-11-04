@@ -670,8 +670,8 @@ Sent via WebSwan Services App`
                         <div class="pricing-item"><p>Custom Logo</p><span>$195</span></div>
                         <div class="pricing-item"><p>Custom QR Code</p><span>$95</span></div>
                         <div class="pricing-item"><p>Reputation Management</p><span>$109/mo</span></div>
-                        <div class="pricing-item"><p>⚖️ Compliance Banner (with website)</p><span>$399 setup + $49/mo</span></div>
-                        <div class="pricing-item"><p>⚖️ Standalone Compliance Banner</p><span>$499 + $49/mo</span></div>
+                        <div class="pricing-item"><p>⚖️ Compliance Banner (with website)</p><span>$399 setup + $59/mo</span></div>
+                        <div class="pricing-item"><p>⚖️ Standalone Compliance Banner</p><span>$499 + $59/mo</span></div>
                         <div class="pricing-item"><p>SEO Content</p><span>$350/page</span></div>
                     </div>
                 </div>
@@ -710,7 +710,7 @@ Sent via WebSwan Services App`
                 <div class="compliance-box">
                     <h4>⚖️ Website Compliance Banner — Included by Default</h4>
                     <p>All new websites built in 2026 must include a compliance banner to meet state privacy laws and avoid legal penalties. The compliance banner is <strong>included in your package</strong> at $399 setup + $49/month.</p>
-                    <p style="font-size:0.82rem;color:#1565c0;">✅ Setup: <strong>$399</strong> | Monthly: <strong>+$49/mo</strong> added to your total</p>
+                    <p style="font-size:0.82rem;color:#1565c0;">✅ Setup: <strong>$399</strong> | Monthly: <strong>+$59/mo</strong> added to your total</p>
                     <div class="compliance-optout-row">
                         <input type="checkbox" id="complianceOptOut" onchange="toggleComplianceOptOut()">
                         <label for="complianceOptOut">I wish to <strong>OPT OUT</strong> of the website compliance banner. I understand that The WebSwan is not responsible for any legal action, fine, or penalty taken against my business as a result of this decision.</label>
@@ -765,7 +765,7 @@ Sent via WebSwan Services App`
             const optOut = document.getElementById('complianceOptOut')?.checked;
             const initials = document.getElementById('complianceInitials')?.value.trim();
             const complianceConfirmed = optOut && initials.length >= 2;
-            if(!complianceConfirmed) { total += 399; monthly += 49; }
+            if(!complianceConfirmed) { total += 399; monthly += 59; }
             if(specialPriceActive && specialPriceAmount > 0) { total = specialPriceAmount; monthly = 109; }
             document.getElementById('modalEstimate').innerText = total.toLocaleString();
             if(monthly > 0) {
